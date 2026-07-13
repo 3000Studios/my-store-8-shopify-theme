@@ -1,0 +1,297 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */{
+  "sections": {
+    "hero_jVaWmY": {
+      "type": "hero",
+      "blocks": {
+        "text_YLPk4p": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p>Colorful everyday essentials, organized for fast shopping</p>",
+            "text_color": "{{ settings.color_palette.background }}",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "button_H9gpTf": {
+          "type": "button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "Shop best picks",
+            "link": "shopify://collections/all",
+            "open_in_new_tab": false,
+            "style_class": "button-custom",
+            "custom_button_background": "rgba(0,0,0,0)",
+            "custom_button_text": "{{ settings.color_palette.background }}",
+            "custom_button_border": "{{ settings.color_palette.background }}",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_YLPk4p",
+        "button_H9gpTf"
+      ],
+      "name": "t:names.hero",
+      "settings": {
+        "media_type_1": "image",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "space-between",
+        "vertical_alignment": "flex-end",
+        "align_baseline": true,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 24,
+        "section_width": "page-width",
+        "section_height": "medium",
+        "section_height_custom": 50,
+        "background_color": "rgba(0,0,0,0)",
+        "toggle_overlay": true,
+        "overlay_color": "#12121266",
+        "overlay_style": "solid",
+        "gradient_direction": "to bottom",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 100,
+        "padding-block-end": 72
+      }
+    },
+    "product_list_fa6P9H": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_YFtzcL": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h3>Best practical picks right now</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_list_button_MWeP9V": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_YFtzcL",
+            "product_list_button_MWeP9V"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_677WP3": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_YXxMTj": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_JQzVV4": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_677WP3",
+            "product_title_YXxMTj",
+            "price_JQzVV4"
+          ]
+        }
+      },
+      "name": "Featured collection",
+      "settings": {
+        "collection": "all",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "max_products": 12,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 14,
+        "rows_gap": 30,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 28,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 58,
+        "padding-block-end": 72
+      }
+    },
+    "custom_liquid_storefront_focus": {
+      "type": "custom-liquid",
+      "name": "High-conversion storefront launcher",
+      "settings": {
+        "custom_liquid": "<style>\n:root{--ms8-ink:#111412;--ms8-muted:rgba(17,20,18,.68);--ms8-line:rgba(17,20,18,.14);--ms8-panel:#ffffff;--ms8-soft:#f4f2ea;--ms8-accent:#0d5c46;--ms8-accent-2:#e85d2a;--ms8-gold:#d5a11e}.ms8-launch{color:var(--ms8-ink);display:grid;gap:28px}.ms8-launch *{box-sizing:border-box}.ms8-launch a{text-decoration:none;color:inherit}.ms8-kicker{display:inline-flex;align-items:center;gap:8px;width:max-content;border:1px solid rgba(13,92,70,.22);background:#fff;color:var(--ms8-accent);padding:8px 12px;border-radius:999px;font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.ms8-dot{width:8px;height:8px;border-radius:999px;background:var(--ms8-accent-2);box-shadow:0 0 0 5px rgba(232,93,42,.12)}.ms8-head{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(280px,.92fr);gap:28px;align-items:end}.ms8-head h2{margin:0;max-width:900px;font-size:clamp(2.35rem,7vw,5.8rem);line-height:.9;letter-spacing:0}.ms8-head p{margin:0;color:var(--ms8-muted);font-size:clamp(1rem,2.2vw,1.22rem);line-height:1.55}.ms8-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.ms8-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:6px;border:1px solid var(--ms8-ink);font-weight:850}.ms8-btn--dark{background:var(--ms8-ink);color:#fff}.ms8-btn--light{background:#fff}.ms8-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}.ms8-feature{display:grid;min-height:360px;grid-template-columns:1fr 1fr;border:1px solid var(--ms8-line);background:linear-gradient(135deg,#fff,#f7f4eb);overflow:hidden}.ms8-feature__copy{display:flex;flex-direction:column;justify-content:space-between;gap:22px;padding:26px}.ms8-feature h3{margin:0;font-size:clamp(1.9rem,4vw,3.4rem);line-height:.95}.ms8-feature p{margin:10px 0 0;color:var(--ms8-muted);line-height:1.45}.ms8-chiprow{display:flex;flex-wrap:wrap;gap:8px}.ms8-chip{border:1px solid rgba(17,20,18,.15);background:#fff;padding:7px 10px;border-radius:999px;font-size:.82rem;font-weight:750}.ms8-feature__art{position:relative;min-height:260px;background:radial-gradient(circle at 28% 28%,rgba(232,93,42,.28),transparent 34%),radial-gradient(circle at 76% 70%,rgba(13,92,70,.24),transparent 36%),linear-gradient(145deg,#222,#0f1f19)}.ms8-device{position:absolute;border-radius:18px;background:#fefefe;box-shadow:0 18px 60px rgba(0,0,0,.32)}.ms8-device--one{width:44%;height:62%;left:14%;top:17%;transform:rotate(-8deg)}.ms8-device--two{width:42%;height:32%;right:12%;bottom:18%;transform:rotate(8deg);background:#111;color:#fff}.ms8-device span{position:absolute;left:18px;right:18px;bottom:18px;font-weight:900;font-size:1rem}.ms8-side{display:grid;gap:14px}.ms8-card{display:flex;flex-direction:column;justify-content:space-between;min-height:173px;border:1px solid var(--ms8-line);background:#fff;padding:20px;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}.ms8-card:hover{transform:translateY(-2px);border-color:rgba(13,92,70,.35);box-shadow:0 18px 50px rgba(17,20,18,.08)}.ms8-card strong{font-size:1.18rem}.ms8-card span{margin-top:8px;color:var(--ms8-muted);line-height:1.42}.ms8-card small{margin-top:20px;color:var(--ms8-accent);font-weight:850}.ms8-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--ms8-line);background:#fff}.ms8-strip div{padding:18px;border-right:1px solid var(--ms8-line)}.ms8-strip div:last-child{border-right:0}.ms8-strip strong{display:block;font-size:.95rem}.ms8-strip span{display:block;margin-top:5px;color:var(--ms8-muted);font-size:.86rem;line-height:1.35}.ms8-route{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.ms8-route a{display:grid;gap:8px;min-height:132px;padding:18px;border:1px solid var(--ms8-line);background:#fff}.ms8-route b{font-size:1rem}.ms8-route span{color:var(--ms8-muted);font-size:.9rem;line-height:1.38}.ms8-route em{align-self:end;font-style:normal;color:var(--ms8-accent);font-weight:850;font-size:.88rem}.ms8-final{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;border:1px solid rgba(13,92,70,.22);background:#0d5c46;color:#fff;padding:20px}.ms8-final p{margin:0;color:rgba(255,255,255,.78);line-height:1.45}.ms8-final .ms8-btn{background:#fff;color:#0d5c46;border-color:#fff}@media(max-width:900px){.ms8-head,.ms8-grid,.ms8-feature,.ms8-final{grid-template-columns:1fr}.ms8-strip,.ms8-route{grid-template-columns:repeat(2,minmax(0,1fr))}.ms8-feature__art{min-height:280px}}@media(max-width:560px){.ms8-launch{gap:20px}.ms8-head h2{font-size:2.55rem}.ms8-actions{display:grid}.ms8-btn{width:100%}.ms8-feature__copy,.ms8-card,.ms8-route a,.ms8-final{padding:16px}.ms8-strip,.ms8-route{grid-template-columns:1fr}.ms8-strip div{border-right:0;border-bottom:1px solid var(--ms8-line)}.ms8-strip div:last-child{border-bottom:0}.ms8-feature{min-height:auto}.ms8-feature__art{min-height:220px}.ms8-device--one{height:58%}.ms8-card{min-height:132px}}</style>\n<section class=\"ms8-launch\" aria-label=\"My Store 8 shopping guide\">\n  <div class=\"ms8-head\">\n    <div><span class=\"ms8-kicker\"><i class=\"ms8-dot\"></i> Fresh catalog focus</span><h2>Useful products shoppers can understand fast.</h2></div>\n    <div><p>My Store 8 is organized around clear everyday use cases: phone power, car convenience, home upkeep, outdoor gear, and family-friendly essentials.</p><div class=\"ms8-actions\"><a class=\"ms8-btn ms8-btn--dark\" href=\"/collections/all\">Shop all products</a><a class=\"ms8-btn ms8-btn--light\" href=\"/collections/tech-accessories\">Shop tech accessories</a></div></div>\n  </div>\n  <div class=\"ms8-grid\">\n    <a class=\"ms8-feature\" href=\"/products/5000mah-portable-charger-with-built-in-cable\"><div class=\"ms8-feature__copy\"><div><div class=\"ms8-chiprow\"><span class=\"ms8-chip\">Tech</span><span class=\"ms8-chip\">Travel</span><span class=\"ms8-chip\">Daily carry</span></div><h3>Keep devices powered without extra clutter.</h3><p>Lead with the portable charger because the value is obvious and the product fits daily routines.</p></div><span class=\"ms8-btn ms8-btn--dark\">View portable charger</span></div><div class=\"ms8-feature__art\" aria-hidden=\"true\"><div class=\"ms8-device ms8-device--one\"><span>5000mAh</span></div><div class=\"ms8-device ms8-device--two\"><span>Built-in cable</span></div></div></a>\n    <div class=\"ms8-side\"><a class=\"ms8-card\" href=\"/products/magnetic-car-phone-holder\"><strong>Magnetic Car Phone Holder</strong><span>A simple daily-drive upgrade with a quick-use benefit.</span><small>Shop car essentials</small></a><a class=\"ms8-card\" href=\"/products/kick-back-pro-rebound-net\"><strong>Kick Back Pro Rebound Net</strong><span>Fitness and outdoor gear with a clear active-use case.</span><small>Shop fitness gear</small></a></div>\n  </div>\n  <div class=\"ms8-strip\"><div><strong>Secure checkout</strong><span>Checkout is handled by Shopify.</span></div><div><strong>Clear pricing</strong><span>Product prices are visible before checkout.</span></div><div><strong>Shipping shown at checkout</strong><span>Rates and taxes calculate before payment.</span></div><div><strong>Focused catalog</strong><span>Risky and unavailable products stay out of public view.</span></div></div>\n  <div class=\"ms8-route\"><a href=\"/products/grill-cleaning-brick-for-bbq-racks-and-cookers\"><b>Home tools</b><span>Practical cleaning and utility items for everyday upkeep.</span><em>Open product</em></a><a href=\"/products/biggdesign-dogs-outdoor-flashlight-9-led-lamps-1-w\"><b>Outdoor utility</b><span>Useful gear for walks, camping, and outdoor routines.</span><em>Open product</em></a><a href=\"/collections/home-living\"><b>Home and Living</b><span>Decor, organizing, and practical home improvement picks.</span><em>Open collection</em></a><a href=\"/pages/contact\"><b>Need help?</b><span>Contact the store before placing an order if anything is unclear.</span><em>Contact us</em></a></div>\n  <div class=\"ms8-final\"><div><strong>Start with the products that solve an obvious problem.</strong><p>The homepage pushes high-utility items first and keeps the full catalog one tap away.</p></div><a class=\"ms8-btn\" href=\"/collections/all\">Browse catalog</a></div>\n</section>",
+        "background_color": "#f4f2ea",
+        "section_width": "page-width",
+        "padding-block-start": 72,
+        "padding-block-end": 72
+      }
+    }
+  },
+  "order": [
+    "hero_jVaWmY",
+    "custom_liquid_storefront_focus",
+    "product_list_fa6P9H"
+  ]
+}
