@@ -6,7 +6,9 @@
     "theme:pull": "shopify theme pull --store knkxfs-xd.myshopify.com --theme 181639479597 --nodelete",
     "theme:check": "shopify theme check",
     "theme:push": "shopify theme push --store knkxfs-xd.myshopify.com --theme 181639479597 --allow-live",
-    "theme:dev": "shopify theme dev --store knkxfs-xd.myshopify.com --theme 181639479597 --allow-live"
+    "theme:dev": "shopify theme dev --store knkxfs-xd.myshopify.com --theme 181639479597 --allow-live",
+    "media:square": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/make-product-square.ps1",
+    "media:vertical-ad": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/make-vertical-ad.ps1"
   },
   "devDependencies": {
     "@shopify/cli": "4.4.0"
