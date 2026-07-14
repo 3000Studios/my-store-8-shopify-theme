@@ -1,12 +1,15 @@
 :root {
-  --ms8-ink: #151515;
+  --ms8-ink: #182436;
   --ms8-paper: #fffdf8;
-  --ms8-warm: #f6efe5;
-  --ms8-blue: #2563eb;
-  --ms8-green: #16a34a;
-  --ms8-orange: #f97316;
-  --ms8-yellow: #fde68a;
-  --ms8-border: #ded7cc;
+  --ms8-warm: #f3f4f6;
+  --ms8-blue: #2076a8;
+  --ms8-green: #168257;
+  --ms8-orange: #ffad33;
+  --ms8-yellow: #ffd166;
+  --ms8-border: #d7dde5;
+  --ms8-commerce-dark: #182436;
+  --ms8-commerce-dark-2: #243247;
+  --ms8-commerce-link: #1b6f9f;
 }
 
 body,
@@ -59,7 +62,7 @@ html {
 
 body {
   background:
-    linear-gradient(180deg, rgba(255, 253, 248, 0.98), rgba(246, 239, 229, 0.55)),
+    linear-gradient(180deg, rgba(255, 253, 248, 0.98), rgba(243, 244, 246, 0.62)),
     var(--ms8-paper);
   color: var(--ms8-ink);
 }
@@ -299,9 +302,9 @@ header-component {
   top: 0;
   z-index: 30;
   display: block;
-  border-bottom: 1px solid rgba(21, 21, 21, 0.1);
-  background: rgba(255, 253, 248, 0.88);
-  box-shadow: 0 12px 34px rgba(21, 21, 21, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(90deg, rgba(24, 36, 54, 0.96), rgba(36, 50, 71, 0.94));
+  box-shadow: 0 12px 34px rgba(7, 12, 18, 0.18);
   backdrop-filter: blur(18px) saturate(1.15);
 }
 
@@ -314,7 +317,7 @@ header-component {
 .header__heading-link,
 .header-logo,
 .header a[href="/"] {
-  color: #151515 !important;
+  color: #ffffff !important;
   font-weight: 950 !important;
   letter-spacing: 0;
 }
@@ -342,8 +345,8 @@ header-component {
 .header-actions button:hover,
 .header__icon:hover,
 .header button[type="button"]:hover {
-  background: rgba(249, 115, 22, 0.12);
-  box-shadow: 0 10px 24px rgba(21, 21, 21, 0.1);
+  background: rgba(255, 209, 102, 0.16);
+  box-shadow: 0 10px 24px rgba(7, 12, 18, 0.24);
   transform: translateY(-1px);
 }
 
@@ -361,7 +364,7 @@ nav a {
   min-height: 38px;
   align-items: center;
   border-radius: 999px;
-  color: #252525 !important;
+  color: rgba(255, 255, 255, 0.92) !important;
   font-weight: 850;
   letter-spacing: 0;
   transition:
@@ -385,7 +388,7 @@ nav a[href]::after {
   height: 2px;
   transform: scaleX(0);
   transform-origin: left;
-  background: #f97316;
+  background: #ffad33;
   transition: transform 180ms ease;
 }
 
@@ -394,8 +397,8 @@ nav a[href]::after {
 .menu__link:hover,
 .header-menu a[href]:hover,
 nav a[href]:hover {
-  background: rgba(249, 115, 22, 0.1);
-  color: #111111 !important;
+  background: rgba(255, 209, 102, 0.14);
+  color: #ffffff !important;
   transform: translateY(-1px);
 }
 
@@ -417,7 +420,7 @@ nav a[href]:hover::after {
 
 @media (max-width: 749px) {
   header-component {
-    background: rgba(255, 253, 248, 0.94);
+    background: linear-gradient(90deg, rgba(24, 36, 54, 0.98), rgba(36, 50, 71, 0.98));
   }
 
   .header,
@@ -652,6 +655,152 @@ nav a[href]:hover::after {
   line-height: 1.55;
 }
 
+.ms8-top-picks {
+  padding: clamp(30px, 5vw, 58px) max(16px, calc((100vw - 1180px) / 2)) clamp(36px, 6vw, 68px);
+  background:
+    linear-gradient(180deg, #ffffff, #f3f4f6),
+    var(--ms8-warm);
+  border-bottom: 1px solid var(--ms8-border);
+}
+
+.ms8-top-picks__head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.ms8-top-picks__eyebrow {
+  margin: 0 0 8px;
+  color: var(--ms8-commerce-link);
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ms8-top-picks h2 {
+  max-width: 760px;
+  margin: 0;
+  color: var(--ms8-commerce-dark);
+  font-size: clamp(1.9rem, 4vw, 3.5rem);
+  line-height: 0.96;
+}
+
+.ms8-top-picks__view {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border: 1px solid rgba(24, 36, 54, 0.18);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ms8-commerce-link);
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(24, 36, 54, 0.08);
+}
+
+.ms8-top-picks__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.ms8-top-pick {
+  overflow: hidden;
+  border: 1px solid rgba(24, 36, 54, 0.12);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 16px 42px rgba(24, 36, 54, 0.08);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.ms8-top-pick:hover {
+  border-color: rgba(255, 173, 51, 0.72);
+  transform: translateY(-4px);
+  box-shadow: 0 22px 56px rgba(24, 36, 54, 0.14);
+}
+
+.ms8-top-pick__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  background: #eef2f7;
+}
+
+.ms8-top-pick__media img,
+.ms8-top-pick__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 420ms ease;
+}
+
+.ms8-top-pick:hover .ms8-top-pick__media img,
+.ms8-top-pick:hover .ms8-top-pick__media video {
+  transform: scale(1.045);
+}
+
+.ms8-top-pick__badge {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: #ffad33;
+  color: #182436;
+  font-size: 0.72rem;
+  font-weight: 950;
+  box-shadow: 0 8px 18px rgba(24, 36, 54, 0.18);
+}
+
+.ms8-top-pick__body {
+  padding: 14px;
+}
+
+.ms8-top-pick h3 {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.ms8-top-pick h3 a {
+  color: var(--ms8-commerce-dark);
+  text-decoration: none;
+}
+
+.ms8-top-pick__price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.ms8-top-pick__price span {
+  color: #b13b00;
+  font-size: 1.18rem;
+  font-weight: 950;
+}
+
+.ms8-top-pick__price s {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.ms8-top-pick p {
+  margin: 9px 0 0;
+  color: #4b5563;
+  font-size: 0.88rem;
+  line-height: 1.42;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ms8-collection-hero__video {
     display: none;
@@ -749,5 +898,24 @@ nav a[href]:hover::after {
 
   .ms8-collection-hero h1 {
     font-size: clamp(3rem, 15vw, 5.4rem);
+  }
+
+  .ms8-top-picks__head {
+    display: grid;
+  }
+
+  .ms8-top-picks__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .ms8-top-pick__body {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 460px) {
+  .ms8-top-picks__grid {
+    grid-template-columns: 1fr;
   }
 }

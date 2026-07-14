@@ -13,6 +13,11 @@
       "name": "Collection video banner",
       "settings": {}
     },
+    "ms8_top_picks": {
+      "type": "ms8-category-top-picks",
+      "name": "Category top picks",
+      "settings": {}
+    },
     "main": {
       "type": "main-collection",
       "blocks": {
@@ -138,6 +143,7 @@
   },
   "order": [
     "ms8_video_banner",
+    "ms8_top_picks",
     "main"
   ]
 }

@@ -1,0 +1,74 @@
+{% liquid
+  assign products_to_show = collection.products | slice: 0, 4
+  assign has_products = false
+  if products_to_show.size > 0
+    assign has_products = true
+  endif
+%}
+
+{% if has_products %}
+  <section class="ms8-top-picks" aria-label="Top picks from {{ collection.title | escape }}">
+    <div class="ms8-top-picks__head">
+      <div>
+        <p class="ms8-top-picks__eyebrow">Category top picks</p>
+        <h2>Start with the strongest finds in {{ collection.title }}</h2>
+      </div>
+      <a class="ms8-top-picks__view" href="{{ collection.url }}">View all</a>
+    </div>
+
+    <div class="ms8-top-picks__grid">
+      {% for product in products_to_show %}
+        {% liquid
+          assign product_video = product.media | where: 'media_type', 'video' | first
+          assign product_price = product.price | money_without_trailing_zeros
+          assign compare_price = product.compare_at_price | money_without_trailing_zeros
+          assign has_sale = false
+          if product.compare_at_price > product.price
+            assign has_sale = true
+          endif
+        %}
+        <article class="ms8-top-pick">
+          <a class="ms8-top-pick__media" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+            {% if product_video %}
+              {{ product_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: '700x' }}
+            {% elsif product.featured_media %}
+              {{ product.featured_media.preview_image | image_url: width: 700 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 25vw, 50vw', widths: '360, 540, 700', alt: product.title }}
+            {% endif %}
+            <span class="ms8-top-pick__badge">
+              {% if forloop.first %}
+                Best first look
+              {% else %}
+                Popular pick
+              {% endif %}
+            </span>
+          </a>
+          <div class="ms8-top-pick__body">
+            <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+            <div class="ms8-top-pick__price">
+              <span>{{ product_price }}</span>
+              {% if has_sale %}
+                <s>{{ compare_price }}</s>
+              {% endif %}
+            </div>
+            <p>Secure checkout, clear pricing, and practical value for this category.</p>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Category top picks",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Category top picks"
+    }
+  ]
+}
+{% endschema %}
