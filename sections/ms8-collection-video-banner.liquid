@@ -1,0 +1,51 @@
+{% liquid
+  assign banner_title = collection.title | default: 'Shop'
+  assign banner_description = collection.description | strip_html | strip
+  assign topic_class = collection.handle | default: 'all'
+  assign video_asset = 'bought-it-online-hero.mp4'
+  assign eyebrow = 'Featured collection'
+
+  case collection.handle
+    when 'outdoor-sports'
+      assign eyebrow = 'Outdoor & sports'
+    when 'tech-accessories'
+      assign eyebrow = 'Tech accessories'
+    when 'home-living'
+      assign eyebrow = 'Home & living'
+    when 'best-picks'
+      assign eyebrow = 'Best picks'
+    when 'all'
+      assign eyebrow = 'Shop all'
+  endcase
+%}
+
+<section class="ms8-collection-hero ms8-collection-hero--{{ topic_class | handle }}" aria-label="{{ banner_title | escape }} collection banner">
+  <video class="ms8-collection-hero__video" autoplay muted loop playsinline preload="metadata">
+    <source src="{{ video_asset | asset_url }}" type="video/mp4">
+  </video>
+  <div class="ms8-collection-hero__overlay"></div>
+  <div class="ms8-collection-hero__inner">
+    <p class="ms8-collection-hero__eyebrow">{{ eyebrow }}</p>
+    <h1>{{ banner_title }}</h1>
+    {% if banner_description != blank %}
+      <p class="ms8-collection-hero__copy">{{ banner_description }}</p>
+    {% else %}
+      <p class="ms8-collection-hero__copy">Browse practical finds selected for fast shopping, useful everyday value, and secure Shopify checkout.</p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection video banner",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Collection video banner"
+    }
+  ]
+}
+{% endschema %}

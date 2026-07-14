@@ -553,6 +553,111 @@ nav a[href]:hover::after {
   color: var(--ms8-ink);
 }
 
+.ms8-collection-hero {
+  position: relative;
+  min-height: clamp(260px, 36vw, 460px);
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+  isolation: isolate;
+  background: #151515;
+  color: #fff;
+}
+
+.ms8-collection-hero__video,
+.ms8-collection-hero__overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ms8-collection-hero__video {
+  z-index: -2;
+  object-fit: cover;
+  filter: saturate(1.12) contrast(1.08) brightness(0.82);
+}
+
+.ms8-collection-hero__overlay {
+  z-index: -1;
+  background:
+    radial-gradient(circle at 82% 28%, rgba(249, 115, 22, 0.26), transparent 32%),
+    linear-gradient(90deg, rgba(8, 10, 12, 0.9), rgba(8, 10, 12, 0.45) 52%, rgba(8, 10, 12, 0.72)),
+    linear-gradient(0deg, rgba(8, 10, 12, 0.82), rgba(8, 10, 12, 0.1));
+}
+
+.ms8-collection-hero--outdoor-sports .ms8-collection-hero__overlay {
+  background:
+    radial-gradient(circle at 76% 25%, rgba(22, 163, 74, 0.34), transparent 34%),
+    radial-gradient(circle at 16% 70%, rgba(253, 230, 138, 0.22), transparent 30%),
+    linear-gradient(90deg, rgba(4, 20, 14, 0.92), rgba(4, 20, 14, 0.42) 52%, rgba(4, 20, 14, 0.76));
+}
+
+.ms8-collection-hero--tech-accessories .ms8-collection-hero__overlay {
+  background:
+    radial-gradient(circle at 78% 24%, rgba(37, 99, 235, 0.42), transparent 34%),
+    radial-gradient(circle at 16% 76%, rgba(249, 115, 22, 0.18), transparent 28%),
+    linear-gradient(90deg, rgba(6, 10, 28, 0.92), rgba(6, 10, 28, 0.46) 52%, rgba(6, 10, 28, 0.8));
+}
+
+.ms8-collection-hero--home-living .ms8-collection-hero__overlay {
+  background:
+    radial-gradient(circle at 78% 24%, rgba(253, 230, 138, 0.34), transparent 34%),
+    radial-gradient(circle at 14% 74%, rgba(22, 163, 74, 0.2), transparent 30%),
+    linear-gradient(90deg, rgba(34, 22, 14, 0.9), rgba(34, 22, 14, 0.44) 52%, rgba(34, 22, 14, 0.74));
+}
+
+.ms8-collection-hero--best-picks .ms8-collection-hero__overlay {
+  background:
+    radial-gradient(circle at 78% 24%, rgba(249, 115, 22, 0.36), transparent 34%),
+    radial-gradient(circle at 12% 78%, rgba(37, 99, 235, 0.22), transparent 28%),
+    linear-gradient(90deg, rgba(18, 12, 8, 0.92), rgba(18, 12, 8, 0.44) 52%, rgba(18, 12, 8, 0.78));
+}
+
+.ms8-collection-hero__inner {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: clamp(76px, 10vw, 132px) 0 clamp(42px, 7vw, 82px);
+}
+
+.ms8-collection-hero__eyebrow {
+  display: inline-flex;
+  margin: 0 0 14px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.13);
+  color: #fde68a;
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.ms8-collection-hero h1 {
+  max-width: 980px;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(3.4rem, 9vw, 7.6rem);
+  line-height: 0.88;
+  text-wrap: balance;
+}
+
+.ms8-collection-hero__copy {
+  max-width: 680px;
+  margin: 18px 0 0;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: clamp(1rem, 1.7vw, 1.22rem);
+  line-height: 1.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms8-collection-hero__video {
+    display: none;
+  }
+}
+
 @keyframes ms8-float {
   0%,
   100% {
@@ -630,5 +735,19 @@ nav a[href]:hover::after {
   .ms8-route a,
   .ms8-card {
     min-height: auto;
+  }
+
+  .ms8-collection-hero {
+    min-height: 420px;
+  }
+
+  .ms8-collection-hero__inner {
+    width: min(100% - 28px, 680px);
+    padding-top: 104px;
+    padding-bottom: 48px;
+  }
+
+  .ms8-collection-hero h1 {
+    font-size: clamp(3rem, 15vw, 5.4rem);
   }
 }
