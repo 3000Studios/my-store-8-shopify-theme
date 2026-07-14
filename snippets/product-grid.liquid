@@ -126,6 +126,12 @@
       {% if title %}
         <h4 class="main-collection-grid__title">{{ title }}</h4>
       {% endif %}
+      <aside class="ms8-collection-trust-strip" aria-label="Shopping benefits">
+        <span>Verified active inventory</span>
+        <span>Customer-paid cost buffers</span>
+        <span>Secure Shopify checkout</span>
+        <span>No fake scarcity</span>
+      </aside>
       <ul
         class="product-grid product-grid--{{ section.id }} product-grid--{{ section.settings.layout_type }} {% if section.settings.mobile_product_card_size == 'large' %} product-grid-mobile--large{% endif %}"
         data-testid="product-grid"
