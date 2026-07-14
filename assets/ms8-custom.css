@@ -678,13 +678,131 @@ button[aria-label*="menu" i] {
 
 .menu-drawer,
 .header-menu {
-  color: #28d985;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: #dffbff;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(34, 211, 238, 0.2), transparent 28%),
+    radial-gradient(circle at 18% 78%, rgba(129, 140, 248, 0.18), transparent 30%),
+    linear-gradient(135deg, rgba(3, 7, 18, 0.98), rgba(6, 16, 42, 0.96) 48%, rgba(3, 7, 18, 0.99)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 30px 90px rgba(3, 7, 18, 0.48);
+  backdrop-filter: blur(24px) saturate(1.18);
+  -webkit-backdrop-filter: blur(24px) saturate(1.18);
+}
+
+.menu-drawer::before,
+.header-menu::before,
+.menu-drawer::after,
+.header-menu::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.menu-drawer::before,
+.header-menu::before {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at var(--ms8-menu-x, 72%) var(--ms8-menu-y, 24%), rgba(34, 211, 238, 0.18), transparent 18%),
+    radial-gradient(circle at 18% 76%, rgba(129, 140, 248, 0.16), transparent 22%);
+  background-size:
+    36px 36px,
+    36px 36px,
+    100% 100%,
+    100% 100%;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.52));
+  opacity: 0.82;
+  animation: ms8-menu-grid-drift 18s linear infinite;
+}
+
+.menu-drawer::after,
+.header-menu::after {
+  inset: -22%;
+  background:
+    conic-gradient(
+      from 90deg,
+      transparent 0deg,
+      rgba(34, 211, 238, 0.12) 44deg,
+      transparent 88deg,
+      rgba(129, 140, 248, 0.12) 138deg,
+      transparent 206deg,
+      rgba(34, 211, 238, 0.08) 280deg,
+      transparent 360deg
+    );
+  filter: blur(28px);
+  opacity: 0.72;
+  transform: rotate(0deg) scale(1.08);
+  animation: ms8-menu-aurora 16s ease-in-out infinite alternate;
 }
 
 .menu-drawer a,
 .menu-drawer button,
 .header-menu a {
-  color: #28d985 !important;
+  color: #e9fbff !important;
+}
+
+.menu-drawer a,
+.menu-drawer button,
+.header-menu a,
+.header-menu button {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.035) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 14px 34px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.menu-drawer a:hover,
+.menu-drawer button:hover,
+.header-menu a:hover,
+.header-menu button:hover {
+  border-color: rgba(34, 211, 238, 0.46) !important;
+  color: #67e8f9 !important;
+  background: rgba(34, 211, 238, 0.09) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 0 0 1px rgba(129, 140, 248, 0.14),
+    0 18px 46px rgba(34, 211, 238, 0.16);
+  transform: perspective(760px) translateY(-3px) translateZ(12px) rotateX(7deg);
+}
+
+@keyframes ms8-menu-grid-drift {
+  0% {
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0;
+  }
+
+  100% {
+    background-position:
+      72px 36px,
+      36px 72px,
+      0 0,
+      0 0;
+  }
+}
+
+@keyframes ms8-menu-aurora {
+  from {
+    opacity: 0.5;
+    transform: rotate(-9deg) scale(1.05);
+  }
+
+  to {
+    opacity: 0.82;
+    transform: rotate(12deg) scale(1.18);
+  }
 }
 
 .menu-list,
@@ -846,6 +964,14 @@ nav a[href]:hover::after {
   transform: perspective(700px) translateY(0) rotateX(0deg) scale(1);
 }
 
+:is(.menu-drawer, .header-menu) :is(a[href], button):hover,
+:is(.menu-drawer, .header-menu) :is(a[href], button):focus-visible {
+  color: #67e8f9 !important;
+  text-shadow:
+    0 0 10px rgba(34, 211, 238, 0.88),
+    0 0 22px rgba(129, 140, 248, 0.58);
+}
+
 .button:hover,
 .button-custom:hover,
 .shopify-payment-button__button:hover,
@@ -867,11 +993,15 @@ nav a[href]:hover::after {
   }
 
   .menu-drawer,
-  .header-menu,
-  .menu-list {
+  .header-menu {
     background:
-      linear-gradient(180deg, rgba(45, 102, 167, 0.98), rgba(4, 18, 44, 0.99)),
-      #092854;
+      radial-gradient(circle at 82% 18%, rgba(34, 211, 238, 0.2), transparent 28%),
+      radial-gradient(circle at 18% 78%, rgba(129, 140, 248, 0.18), transparent 30%),
+      linear-gradient(135deg, rgba(3, 7, 18, 0.98), rgba(6, 16, 42, 0.96) 48%, rgba(3, 7, 18, 0.99)) !important;
+  }
+
+  .menu-list {
+    background: transparent;
   }
 
   .menu-list__link,
