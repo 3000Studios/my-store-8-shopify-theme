@@ -21,6 +21,8 @@ npm run theme:check
 npm run theme:push -- --no-color
 ```
 
+Automated sync deploys run through GitHub Actions on pushes to `main`. See [docs/theme-sync-automation.md](docs/theme-sync-automation.md) for the required `SHOPIFY_CLI_THEME_TOKEN` repository secret and rollback notes.
+
 ## Local Workflow
 
 Pull current Shopify theme state before editing:

@@ -1,0 +1,87 @@
+name: Shopify theme sync
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/shopify-theme-sync.yml"
+      - "assets/**"
+      - "blocks/**"
+      - "config/**"
+      - "layout/**"
+      - "locales/**"
+      - "sections/**"
+      - "snippets/**"
+      - "templates/**"
+      - "package.json"
+      - "package-lock.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shopify-theme-sync-main
+  cancel-in-progress: true
+
+env:
+  SHOPIFY_FLAG_STORE: knkxfs-xd.myshopify.com
+  SHOPIFY_THEME_ID: "181639479597"
+  SHOPIFY_CLI_NO_ANALYTICS: "1"
+
+jobs:
+  theme-check:
+    name: Theme check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out theme
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Shopify Theme Check
+        run: npm run theme:check -- --no-color
+
+  deploy-live-theme:
+    name: Deploy live Shopify theme
+    needs: theme-check
+    runs-on: ubuntu-latest
+    env:
+      SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+    steps:
+      - name: Check out theme
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Require Shopify theme token
+        shell: bash
+        run: |
+          if [ -z "$SHOPIFY_CLI_THEME_TOKEN" ]; then
+            echo "Missing required GitHub secret: SHOPIFY_CLI_THEME_TOKEN"
+            exit 1
+          fi
+
+      - name: Push live theme
+        run: >
+          npx shopify theme push
+          --store "$SHOPIFY_FLAG_STORE"
+          --theme "$SHOPIFY_THEME_ID"
+          --allow-live
+          --password "$SHOPIFY_CLI_THEME_TOKEN"
+          --no-color

@@ -16,6 +16,8 @@ npm run theme:check
 npm run theme:push -- --no-color
 ```
 
+GitHub Actions also deploys theme changes pushed to `main` after Theme Check passes. See `docs/theme-sync-automation.md`.
+
 ## Product Import
 
 Use Shopify native CSV import first. Keep new imports as drafts until supplier cost, shipping, claims, and product images are verified.
