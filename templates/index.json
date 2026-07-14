@@ -58,7 +58,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>Best practical picks right now</h3>",
+                "text": "<h3>Best picks, refreshed from the live catalog</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -186,7 +186,7 @@
       },
       "name": "Featured collection",
       "settings": {
-        "collection": "all",
+        "collection": "best-picks",
         "layout_type": "grid",
         "carousel_on_mobile": false,
         "max_products": 12,

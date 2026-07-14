@@ -192,13 +192,36 @@ body {
     transform 180ms ease,
     box-shadow 180ms ease,
     border-color 180ms ease;
+  will-change: transform;
 }
 
 .product-card:hover,
 .ms8-card:hover,
 .ms8-route a:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 44px rgba(21, 21, 21, 0.11);
+  transform: translateY(-6px) scale(1.012);
+  box-shadow: 0 22px 54px rgba(21, 21, 21, 0.14);
+}
+
+.product-card .card-gallery {
+  border-radius: 10px;
+  background: #fff;
+}
+
+.product-card .product-media__image {
+  transition:
+    transform 360ms ease,
+    filter 220ms ease;
+}
+
+.product-card:hover .product-media__image,
+.product-card:focus-within .product-media__image {
+  transform: scale(1.045);
+  filter: saturate(1.08) contrast(1.04);
+}
+
+.product-card product-price,
+.product-card .price {
+  font-weight: 900;
 }
 
 .ms8-launch {

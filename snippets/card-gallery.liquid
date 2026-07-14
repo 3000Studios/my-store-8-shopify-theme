@@ -12,6 +12,7 @@
   assign product = closest.product
   assign block_settings = block.settings
   assign image_sizes = '(min-width: 750px) 50vw, 100vw'
+  assign hover_video = product.media | where: 'media_type', 'video' | first
 
   # Check if product has badges and determine position
   assign has_badges = false
@@ -171,6 +172,26 @@
         show_arrows: show_arrows,
         attributes: slideshow_attributes
       %}
+      {% if hover_video != blank %}
+        <div
+          class="card-gallery__hover-video"
+          aria-hidden="true"
+        >
+          {{
+            hover_video
+            | video_tag:
+              image_size: '900x',
+              autoplay: false,
+              loop: true,
+              muted: true,
+              controls: false,
+              playsinline: true,
+              preload: 'metadata',
+              class: 'card-gallery__hover-video-media'
+          }}
+          <span class="card-gallery__video-chip">Tap to preview</span>
+        </div>
+      {% endif %}
     </a>
   {% elsif product != blank and product.media.size == 0 %}
     <div class="product-card-gallery__title-placeholder">
@@ -206,6 +227,41 @@
     overflow: hidden;
     container-type: inline-size; /* Make card-gallery a container */
     container-name: card-gallery-container; /* Optional: name the container */
+    position: relative;
+  }
+
+  .card-gallery__hover-video {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms ease;
+    background: rgb(0 0 0 / 0.04);
+  }
+
+  .card-gallery__hover-video-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-gallery__video-chip {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 6px 9px;
+    border-radius: 999px;
+    background: rgb(0 0 0 / 0.68);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 850;
+  }
+
+  .card-gallery[data-video-preview='playing'] .card-gallery__hover-video,
+  product-card:hover .card-gallery__hover-video,
+  product-card:focus-within .card-gallery__hover-video {
+    opacity: 1;
   }
 
   .card-gallery__placeholder svg {
