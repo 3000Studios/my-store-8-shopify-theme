@@ -6,11 +6,13 @@
       "description": "Short customer-facing description of the product and its benefits.",
       "supplierName": "Verified Supplier",
       "supplierProductId": "supplier-product-id",
+      "supplierVerified": true,
       "productType": "Tech Accessories",
       "productCost": 2.5,
       "supplierShipping": 1.25,
       "shippingDays": 8,
       "inventoryAvailable": true,
+      "notHighRisk": true,
       "preferredPrice": 14.99,
       "images": [
         "https://example.com/product-image.jpg"

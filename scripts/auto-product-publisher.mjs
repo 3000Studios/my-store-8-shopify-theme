@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { setTimeout as sleep } from 'node:timers/promises';
+import { evaluateActivationGate } from './activation-gate.mjs';
 
 const DEFAULT_ENV_PATH = 'C:/Users/Servi/.config/env/global.env';
 const DEFAULT_QUEUE_PATH = path.resolve('data/auto-product-queue.json');
@@ -102,35 +103,56 @@ function evaluateProduct(item, cfg) {
   const reasons = [];
   const title = String(item.title || '').trim();
   const textForRisk = `${title} ${item.description || ''} ${(item.tags || []).join(' ')}`;
+  const productCost = Number(item.productCost);
+  const supplierShipping = Number(item.supplierShipping);
+  const explicitPrice = Number(item.preferredPrice ?? item.price);
 
   if (!title) reasons.push('missing_title');
   if (riskPatterns.some((pattern) => pattern.test(textForRisk))) reasons.push('risk_category_or_brand');
   if (!item.supplierName && !item.supplierProductId) reasons.push('missing_verified_supplier');
+  if (item.supplierVerified !== true) reasons.push('supplier_not_verified');
   if (!item.inventoryAvailable) reasons.push('inventory_not_verified');
   if (item.hasRealImages !== true) reasons.push('real_images_not_verified');
+  if (item.notHighRisk !== true) reasons.push('high_risk_not_cleared');
   if (!Array.isArray(item.images) || item.images.length === 0) reasons.push('missing_real_images');
   if (Array.isArray(item.images) && item.images.some((src) => !isAllowedImageUrl(src))) reasons.push('invalid_or_placeholder_image_url');
-  if (!Number.isFinite(Number(item.productCost)) || Number(item.productCost) <= 0) reasons.push('missing_product_cost');
-  if (!Number.isFinite(Number(item.supplierShipping)) || Number(item.supplierShipping) < 0) reasons.push('missing_supplier_shipping');
+  if (!Number.isFinite(productCost) || productCost <= 0) reasons.push('missing_product_cost');
+  if (!Number.isFinite(supplierShipping) || supplierShipping < 0) reasons.push('missing_supplier_shipping');
   if (!Number.isFinite(Number(item.shippingDays)) || Number(item.shippingDays) > cfg.maxShippingDays) reasons.push('shipping_too_slow_or_missing');
 
-  const landedCost = Number(item.productCost || 0) + Number(item.supplierShipping || 0);
-  const price = choosePrice(landedCost, item.preferredPrice);
-  const cost = calculateCostModel(price, landedCost);
-  const profit = price - cost.totalCost;
-  const netMargin = profit / price;
+  const startingLandedCost =
+    (Number.isFinite(productCost) ? productCost : 0) +
+    (Number.isFinite(supplierShipping) ? supplierShipping : 0);
+  const candidatePrice = Number.isFinite(explicitPrice)
+    ? explicitPrice
+    : choosePrice(startingLandedCost, item.preferredPrice);
+  const gate = evaluateActivationGate({
+    price: candidatePrice,
+    productCost,
+    supplierShipping,
+    shippingTimeDays: Number(item.shippingDays),
+    supplierVerified: item.supplierVerified,
+    inventoryAvailable: item.inventoryAvailable,
+    hasRealImages: item.hasRealImages,
+    notHighRisk: item.notHighRisk,
+  });
 
-  if (profit < cfg.minNetProfit) reasons.push(`net_profit_below_${cfg.minNetProfit}`);
-  if (netMargin < cfg.minNetMargin) reasons.push(`net_margin_below_${cfg.minNetMargin}`);
+  reasons.push(...gate.failures.filter((reason) => !reasons.includes(reason)));
 
   return {
     ok: reasons.length === 0,
     reasons,
-    landedCost,
-    price,
-    ...cost,
-    profit,
-    netMargin,
+    landedCost: productCost + supplierShipping,
+    price: gate.price,
+    paymentFee: gate.paymentProcessingFee,
+    platformBuffer: gate.platformBuffer,
+    refundReturnBuffer: gate.refundReturnBuffer,
+    discountBuffer: gate.discountBuffer,
+    adTestingBuffer: gate.adTestingBuffer,
+    totalCost: gate.totalCost,
+    minimumPrice: gate.minimumPrice,
+    profit: gate.netProfit,
+    netMargin: gate.netMargin,
   };
 }
 

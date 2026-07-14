@@ -48,11 +48,13 @@ Each product must include:
 
 - `title`
 - `supplierName` or `supplierProductId`
+- `supplierVerified: true`
 - `productCost`
 - `supplierShipping`
 - `shippingDays`
 - `inventoryAvailable: true`
 - `hasRealImages: true`
+- `notHighRisk: true`
 - at least one real image URL in `images`
 
 Optional:

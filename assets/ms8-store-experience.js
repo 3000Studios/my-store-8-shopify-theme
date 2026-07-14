@@ -132,6 +132,7 @@ window.addEventListener('pageshow', () => {
   document.documentElement.classList.remove('ms8-page-leaving');
   showOpeningVideo();
   ensureVerifiedSalesFeature();
+  initGildedWallpaper();
   initLuxuryCursor();
   initLuxuryReveal();
 });
@@ -251,8 +252,8 @@ function initLuxuryCursor() {
     'pointermove',
     (event) => {
       document.documentElement.classList.add('ms8-cursor-ready');
-      dot.style.transform = `translate3d(${event.clientX - 9}px, ${event.clientY - 9}px, 0)`;
-      ring.style.transform = `translate3d(${event.clientX - 24}px, ${event.clientY - 24}px, 0)`;
+      dot.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
+      ring.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
     },
     { passive: true }
   );
@@ -280,6 +281,92 @@ function initLuxuryCursor() {
     },
     { passive: true }
   );
+}
+
+function initGildedWallpaper() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (document.querySelector('.ms8-gilded-wallpaper')) return;
+
+  const canvas = document.createElement('canvas');
+  canvas.className = 'ms8-gilded-wallpaper';
+  canvas.setAttribute('aria-hidden', 'true');
+  document.body.prepend(canvas);
+
+  const context = canvas.getContext('2d');
+  if (!context) return;
+
+  let width = 0;
+  let height = 0;
+  let particles = [];
+  const mouse = { x: -1000, y: -1000 };
+  const maxParticles = window.innerWidth < 750 ? 68 : 138;
+
+  function resize() {
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = Math.floor(width * ratio);
+    canvas.height = Math.floor(height * ratio);
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    particles = Array.from({ length: maxParticles }, createParticle);
+  }
+
+  function createParticle() {
+    return {
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.32,
+      vy: (Math.random() - 0.5) * 0.32,
+      size: Math.random() * 1.8 + 0.35,
+      alpha: Math.random() * 0.38 + 0.12,
+    };
+  }
+
+  function animate() {
+    context.fillStyle = 'rgba(5, 5, 5, 0.2)';
+    context.fillRect(0, 0, width, height);
+
+    const glow = context.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 420);
+    glow.addColorStop(0, 'rgba(212, 175, 55, 0.11)');
+    glow.addColorStop(0.42, 'rgba(153, 101, 21, 0.045)');
+    glow.addColorStop(1, 'rgba(5, 5, 5, 0)');
+    context.fillStyle = glow;
+    context.fillRect(0, 0, width, height);
+
+    for (const particle of particles) {
+      const dx = mouse.x - particle.x;
+      const dy = mouse.y - particle.y;
+      const distance = Math.hypot(dx, dy);
+      if (distance < 150) {
+        particle.vx -= dx * 0.00005;
+        particle.vy -= dy * 0.00005;
+      }
+
+      particle.x += particle.vx;
+      particle.y += particle.vy;
+      if (particle.x < -20 || particle.x > width + 20 || particle.y < -20 || particle.y > height + 20) {
+        Object.assign(particle, createParticle());
+      }
+
+      context.beginPath();
+      context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      context.fillStyle = `rgba(212, 175, 55, ${particle.alpha})`;
+      context.fill();
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', resize, { passive: true });
+  window.addEventListener('pointermove', (event) => {
+    mouse.x = event.clientX;
+    mouse.y = event.clientY;
+  }, { passive: true });
+
+  resize();
+  animate();
 }
 
 function playLuxuryClick() {
