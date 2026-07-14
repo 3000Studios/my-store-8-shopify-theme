@@ -294,13 +294,79 @@ header-component,
     sans-serif !important;
 }
 
+header-component {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: block;
+  border-bottom: 1px solid rgba(21, 21, 21, 0.1);
+  background: rgba(255, 253, 248, 0.88);
+  box-shadow: 0 12px 34px rgba(21, 21, 21, 0.08);
+  backdrop-filter: blur(18px) saturate(1.15);
+}
+
+.header,
+.header__row {
+  min-height: 76px;
+}
+
+.header__heading,
+.header__heading-link,
+.header-logo,
+.header a[href="/"] {
+  color: #151515 !important;
+  font-weight: 950 !important;
+  letter-spacing: 0;
+}
+
+.header__icons,
+.header-actions,
+.header__column--right {
+  gap: 8px;
+}
+
+.header__icons a,
+.header-actions a,
+.header-actions button,
+.header__icon,
+.header button[type="button"] {
+  border-radius: 999px;
+  transition:
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.header__icons a:hover,
+.header-actions a:hover,
+.header-actions button:hover,
+.header__icon:hover,
+.header button[type="button"]:hover {
+  background: rgba(249, 115, 22, 0.12);
+  box-shadow: 0 10px 24px rgba(21, 21, 21, 0.1);
+  transform: translateY(-1px);
+}
+
+.menu-list,
+.menu-list__list {
+  gap: clamp(4px, 0.8vw, 10px);
+}
+
 .menu-list__link,
 .header__menu-item,
 .menu__link,
 .header-menu a,
 nav a {
   position: relative;
+  min-height: 38px;
+  align-items: center;
+  border-radius: 999px;
+  color: #252525 !important;
+  font-weight: 850;
+  letter-spacing: 0;
   transition:
+    background-color 180ms ease,
+    box-shadow 180ms ease,
     color 180ms ease,
     transform 180ms ease,
     opacity 180ms ease;
@@ -328,6 +394,8 @@ nav a[href]::after {
 .menu__link:hover,
 .header-menu a[href]:hover,
 nav a[href]:hover {
+  background: rgba(249, 115, 22, 0.1);
+  color: #111111 !important;
   transform: translateY(-1px);
 }
 
@@ -345,6 +413,32 @@ nav a[href]:hover::after {
 .ms8-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 14px 36px rgba(21, 21, 21, 0.14);
+}
+
+@media (max-width: 749px) {
+  header-component {
+    background: rgba(255, 253, 248, 0.94);
+  }
+
+  .header,
+  .header__row {
+    min-height: 64px;
+  }
+
+  .menu-drawer,
+  .header-menu,
+  .menu-list {
+    background: #fffdf8;
+  }
+
+  .menu-list__link,
+  .header__menu-item,
+  .menu__link,
+  .header-menu a,
+  nav a {
+    min-height: 44px;
+    font-size: 1rem;
+  }
 }
 
 .product-card,
