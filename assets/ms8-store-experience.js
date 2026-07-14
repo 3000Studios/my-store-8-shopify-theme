@@ -4,6 +4,7 @@ const musicPreferenceKey = 'ms8-music-enabled';
 const openerSeenKey = 'ms8-opener-seen';
 let musicWanted = localStorage.getItem(musicPreferenceKey) === 'true';
 let cheerContext;
+let luxuryClickContext;
 
 function assetUrl(fileName) {
   const scripts = [...document.scripts];
@@ -131,6 +132,8 @@ window.addEventListener('pageshow', () => {
   document.documentElement.classList.remove('ms8-page-leaving');
   showOpeningVideo();
   ensureVerifiedSalesFeature();
+  initLuxuryCursor();
+  initLuxuryReveal();
 });
 
 document.addEventListener('click', (event) => {
@@ -232,4 +235,68 @@ async function ensureVerifiedSalesFeature() {
   } catch {
     // Leave the existing Shopify-rendered content alone if product JSON is unavailable.
   }
+}
+
+function initLuxuryCursor() {
+  if (window.matchMedia('(pointer: coarse), (prefers-reduced-motion: reduce)').matches) return;
+  if (document.querySelector('.ms8-luxury-cursor')) return;
+
+  const dot = document.createElement('span');
+  const ring = document.createElement('span');
+  dot.className = 'ms8-luxury-cursor';
+  ring.className = 'ms8-luxury-cursor-ring';
+  document.body.append(dot, ring);
+
+  document.addEventListener(
+    'pointermove',
+    (event) => {
+      document.documentElement.classList.add('ms8-cursor-ready');
+      dot.style.transform = `translate3d(${event.clientX - 9}px, ${event.clientY - 9}px, 0)`;
+      ring.style.transform = `translate3d(${event.clientX - 24}px, ${event.clientY - 24}px, 0)`;
+    },
+    { passive: true }
+  );
+
+  document.addEventListener('pointerdown', () => {
+    document.documentElement.classList.add('ms8-cursor-active');
+    playLuxuryClick();
+  });
+  document.addEventListener('pointerup', () => document.documentElement.classList.remove('ms8-cursor-active'));
+}
+
+function playLuxuryClick() {
+  const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContextClass) return;
+  luxuryClickContext = luxuryClickContext || new AudioContextClass();
+  const oscillator = luxuryClickContext.createOscillator();
+  const gain = luxuryClickContext.createGain();
+  oscillator.type = 'sine';
+  oscillator.frequency.setValueAtTime(880, luxuryClickContext.currentTime);
+  oscillator.frequency.exponentialRampToValueAtTime(130, luxuryClickContext.currentTime + 0.1);
+  gain.gain.setValueAtTime(0.0001, luxuryClickContext.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.035, luxuryClickContext.currentTime + 0.012);
+  gain.gain.exponentialRampToValueAtTime(0.0001, luxuryClickContext.currentTime + 0.1);
+  oscillator.connect(gain);
+  gain.connect(luxuryClickContext.destination);
+  oscillator.start();
+  oscillator.stop(luxuryClickContext.currentTime + 0.11);
+}
+
+function initLuxuryReveal() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  const targets = document.querySelectorAll('.shopify-section, .product-card, .ms8-sales-feature, .ms8-top-pick');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add('ms8-revealed');
+        observer.unobserve(entry.target);
+      }
+    },
+    { threshold: 0.12 }
+  );
+  targets.forEach((target) => {
+    target.classList.add('ms8-reveal');
+    observer.observe(target);
+  });
 }
