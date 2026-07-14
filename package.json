@@ -11,6 +11,8 @@
     "products:auto:publish-once": "node scripts/auto-product-publisher.mjs --once --publish",
     "products:auto:watch": "node scripts/auto-product-publisher.mjs",
     "products:auto:watch-publish": "node scripts/auto-product-publisher.mjs --publish",
+    "products:bulk:dry-run": "node scripts/bulk-reactivate-products.mjs",
+    "products:bulk:publish": "node scripts/bulk-reactivate-products.mjs --publish",
     "media:square": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/make-product-square.ps1",
     "media:vertical-ad": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/make-vertical-ad.ps1"
   },
