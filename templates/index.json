@@ -8,87 +8,15 @@
  * ------------------------------------------------------------
  */{
   "sections": {
-    "hero_jVaWmY": {
-      "type": "hero",
-      "blocks": {
-        "text_YLPk4p": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<p>Colorful everyday essentials, organized for fast shopping</p>",
-            "text_color": "{{ settings.color_palette.background }}",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "button_H9gpTf": {
-          "type": "button",
-          "name": "t:names.button",
-          "settings": {
-            "label": "Shop best picks",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button-custom",
-            "custom_button_background": "rgba(0,0,0,0)",
-            "custom_button_text": "{{ settings.color_palette.background }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
-      ],
-      "name": "t:names.hero",
+    "custom_liquid_bought_it_online_hero": {
+      "type": "custom-liquid",
+      "name": "Bought It Online video hero",
       "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "background_color": "rgba(0,0,0,0)",
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
-        "overlay_style": "solid",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
+        "custom_liquid": "<section class=\"bio-hero\" aria-label=\"Bought It Online featured shopping hero\"><video class=\"bio-hero__video\" autoplay muted loop playsinline preload=\"metadata\"><source src=\"{{ 'bought-it-online-hero.mp4' | asset_url }}\" type=\"video/mp4\"></video><div class=\"bio-hero__shade\"></div><div class=\"bio-hero__content\"><p class=\"bio-hero__eyebrow\">Bought It Online</p><h1>Useful finds without ridiculous prices.</h1><p class=\"bio-hero__copy\">Shop practical home, tech, outdoor, and daily essentials with a cleaner catalog, fast checkout, and prices that make sense.</p><div class=\"bio-hero__actions\"><a href=\"/collections/all\" class=\"bio-hero__button bio-hero__button--primary\">Shop all products</a><a href=\"/collections/home-living\" class=\"bio-hero__button\">Home & Living</a><a href=\"/collections/tech-accessories\" class=\"bio-hero__button\">Tech Accessories</a></div></div><div class=\"bio-hero__rail\" aria-label=\"Store benefits\"><span>Fair-price review in progress</span><span>Secure Shopify checkout</span><span>No fake scarcity</span></div></section>",
+        "background_color": "#111412",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "product_list_fa6P9H": {
@@ -290,7 +218,7 @@
     }
   },
   "order": [
-    "hero_jVaWmY",
+    "custom_liquid_bought_it_online_hero",
     "custom_liquid_storefront_focus",
     "product_list_fa6P9H"
   ]
