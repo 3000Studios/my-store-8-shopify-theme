@@ -1,9 +1,33 @@
 @font-face {
-  font-family: "Playfair Display";
-  src: url("playfair-display-800.ttf") format("truetype");
+  font-family: "Libre Baskerville";
+  src: url("libre-baskerville-400.ttf") format("truetype");
   font-display: swap;
   font-style: normal;
-  font-weight: 700 900;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Libre Baskerville";
+  src: url("libre-baskerville-700.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("lora-400.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("lora-700.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
 }
 
 :root {
@@ -26,15 +50,10 @@ input,
 textarea,
 select {
   font-family:
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Arial,
-    sans-serif !important;
+    Lora,
+    Georgia,
+    "Times New Roman",
+    serif !important;
   letter-spacing: 0;
 }
 
@@ -51,16 +70,11 @@ h6,
 .h5,
 .h6 {
   font-family:
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Arial,
-    sans-serif !important;
-  font-weight: 850;
+    "Libre Baskerville",
+    Georgia,
+    "Times New Roman",
+    serif !important;
+  font-weight: 700;
   letter-spacing: 0;
 }
 
@@ -96,7 +110,7 @@ html {
   padding: 10px clamp(22px, 4vw, 54px);
   color: #28d985;
   font-family:
-    "Playfair Display",
+    "Libre Baskerville",
     Georgia,
     "Times New Roman",
     serif;
@@ -225,11 +239,10 @@ body {
   margin: 0;
   color: #fff;
   font-family:
-    Sora,
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    sans-serif;
+    "Libre Baskerville",
+    Georgia,
+    "Times New Roman",
+    serif;
   font-size: clamp(3.8rem, 9vw, 8.7rem);
   line-height: 0.86;
   letter-spacing: 0;
@@ -386,15 +399,10 @@ header-component,
 .header__menu-item,
 .menu-list__link {
   font-family:
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Arial,
-    sans-serif !important;
+    Lora,
+    Georgia,
+    "Times New Roman",
+    serif !important;
 }
 
 header-component {
@@ -666,24 +674,20 @@ nav a[href]:hover::after {
 
 .ms8-launch {
   font-family:
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
+    Lora,
+    Georgia,
+    "Times New Roman",
+    serif;
 }
 
 .ms8-head h2,
 .ms8-feature h3,
 .ms8-final strong {
   font-family:
-    Sora,
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    sans-serif;
+    "Libre Baskerville",
+    Georgia,
+    "Times New Roman",
+    serif;
   letter-spacing: 0;
 }
 
