@@ -107,13 +107,16 @@
     "
   >
     {% if products.size == 0 %}
-      <div class="main-collection-grid__empty">
-        <h2 class="main-collection-grid__empty-title h2">
-          {{ 'content.no_products_found' | t }}
-        </h2>
+      <div class="main-collection-grid__empty ms8-verified-empty">
+        <p class="ms8-verified-empty__eyebrow">Catalog verification active</p>
+        <h2 class="main-collection-grid__empty-title h2">Products are being profit-checked before they go live.</h2>
         <p>
-          {{ 'content.use_fewer_filters_html' | t: link: collection.url, class: 'main-collection-grid__empty-link' }}
+          We are keeping unverified supplier items hidden until cost, shipping, inventory, media, and margin checks pass.
+          Shop the current verified pick while the next batch is reviewed.
         </p>
+        <a class="ms8-verified-empty__button" href="/products/candidate-phone-stand-for-desk">
+          Shop verified product
+        </a>
       </div>
     {% else %}
       {% if enable_infinite_scroll %}
