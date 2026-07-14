@@ -7,6 +7,10 @@
     "theme:check": "shopify theme check",
     "theme:push": "shopify theme push --store knkxfs-xd.myshopify.com --theme 181639479597 --allow-live",
     "theme:dev": "shopify theme dev --store knkxfs-xd.myshopify.com --theme 181639479597 --allow-live",
+    "products:auto:dry-run": "node scripts/auto-product-publisher.mjs --once",
+    "products:auto:publish-once": "node scripts/auto-product-publisher.mjs --once --publish",
+    "products:auto:watch": "node scripts/auto-product-publisher.mjs",
+    "products:auto:watch-publish": "node scripts/auto-product-publisher.mjs --publish",
     "media:square": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/make-product-square.ps1",
     "media:vertical-ad": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/make-vertical-ad.ps1"
   },
