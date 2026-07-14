@@ -262,6 +262,24 @@ function initLuxuryCursor() {
     playLuxuryClick();
   });
   document.addEventListener('pointerup', () => document.documentElement.classList.remove('ms8-cursor-active'));
+
+  document.addEventListener(
+    'mouseover',
+    (event) => {
+      const target = event.target instanceof Element ? event.target.closest('a, button, .product-card, .ms8-card, .ms8-sales-feature__media') : null;
+      document.documentElement.classList.toggle('ms8-cursor-hover', Boolean(target));
+    },
+    { passive: true }
+  );
+
+  document.addEventListener(
+    'mouseout',
+    (event) => {
+      if (event.relatedTarget instanceof Element && event.relatedTarget.closest('a, button, .product-card, .ms8-card, .ms8-sales-feature__media')) return;
+      document.documentElement.classList.remove('ms8-cursor-hover');
+    },
+    { passive: true }
+  );
 }
 
 function playLuxuryClick() {
