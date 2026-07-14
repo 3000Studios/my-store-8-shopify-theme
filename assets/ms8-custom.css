@@ -9,6 +9,50 @@
   --ms8-border: #ded7cc;
 }
 
+body,
+button,
+input,
+textarea,
+select {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif !important;
+  letter-spacing: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif !important;
+  font-weight: 850;
+  letter-spacing: 0;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -166,6 +210,133 @@ body {
     box-shadow 180ms ease,
     border-color 180ms ease,
     background-color 180ms ease;
+}
+
+.button,
+.button-custom,
+.button-secondary,
+.shopify-payment-button__button,
+.shopify-payment-button__button--unbranded,
+.add-to-cart__button button,
+.bio-hero__button,
+.ms8-btn {
+  color: #ffffff !important;
+  background: #151515 !important;
+  border-color: #151515 !important;
+  font-weight: 900 !important;
+  text-shadow: none !important;
+}
+
+.button-secondary,
+.bio-hero__button:not(.bio-hero__button--primary),
+.ms8-btn--light {
+  color: #151515 !important;
+  background: #ffffff !important;
+  border-color: #151515 !important;
+}
+
+.bio-hero__button--primary,
+.ms8-final .ms8-btn {
+  color: #151515 !important;
+  background: #fde68a !important;
+  border-color: #fde68a !important;
+}
+
+.button:hover,
+.button-custom:hover,
+.button-secondary:hover,
+.shopify-payment-button__button:hover,
+.add-to-cart__button button:hover,
+.bio-hero__button:hover,
+.ms8-btn:hover {
+  filter: brightness(1.03);
+}
+
+shopify-accelerated-checkout,
+shopify-accelerated-checkout-cart,
+.shopify-payment-button,
+.accelerated-checkout-block {
+  width: 100%;
+}
+
+.accelerated-checkout-block {
+  display: block;
+  min-height: 52px;
+}
+
+.shopify-payment-button__button,
+shopify-accelerated-checkout {
+  min-height: 52px;
+}
+
+shopify-accelerated-checkout {
+  --shopify-accelerated-checkout-button-block-size: 52px;
+  --shopify-accelerated-checkout-button-border-radius: 10px;
+}
+
+header-component,
+.header,
+.header__row,
+.menu,
+.menu-list,
+.menu-list__list,
+.header__menu-item,
+.menu-list__link {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif !important;
+}
+
+.menu-list__link,
+.header__menu-item,
+.menu__link,
+.header-menu a,
+nav a {
+  position: relative;
+  transition:
+    color 180ms ease,
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.menu-list__link::after,
+.header__menu-item::after,
+.menu__link::after,
+.header-menu a[href]::after,
+nav a[href]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: #f97316;
+  transition: transform 180ms ease;
+}
+
+.menu-list__link:hover,
+.header__menu-item:hover,
+.menu__link:hover,
+.header-menu a[href]:hover,
+nav a[href]:hover {
+  transform: translateY(-1px);
+}
+
+.menu-list__link:hover::after,
+.header__menu-item:hover::after,
+.menu__link:hover::after,
+.header-menu a[href]:hover::after,
+nav a[href]:hover::after {
+  transform: scaleX(1);
 }
 
 .button:hover,
