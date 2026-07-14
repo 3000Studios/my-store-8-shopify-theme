@@ -212,6 +212,10 @@ html {
   .ms8-header-ticker__track {
     animation: none;
   }
+
+  .ms8-opening-video {
+    display: none;
+  }
 }
 
 body {
@@ -223,6 +227,93 @@ body {
     var(--ms8-paper);
   background-attachment: fixed;
   color: var(--ms8-ink);
+}
+
+.ms8-opening-video {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #020712;
+  cursor: pointer;
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 420ms ease,
+    transform 520ms ease;
+}
+
+.ms8-opening-video.is-closing {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(1.035);
+}
+
+.ms8-opening-video__media,
+.ms8-opening-video__shade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ms8-opening-video__media {
+  object-fit: cover;
+  filter: saturate(1.12) contrast(1.06);
+}
+
+.ms8-opening-video__shade {
+  background:
+    radial-gradient(circle at 50% 38%, rgba(255, 138, 28, 0.16), transparent 34%),
+    linear-gradient(180deg, rgba(2, 7, 18, 0.08), rgba(2, 7, 18, 0.54));
+  pointer-events: none;
+}
+
+.ms8-opening-video__skip {
+  position: absolute;
+  right: clamp(16px, 3vw, 34px);
+  bottom: clamp(16px, 3vw, 34px);
+  z-index: 1;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid rgba(40, 217, 133, 0.52);
+  border-radius: 999px;
+  background: rgba(2, 7, 18, 0.72);
+  color: #28d985;
+  font-family: Lora, Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  box-shadow: 0 14px 34px rgba(2, 7, 18, 0.34);
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition:
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.ms8-opening-video__skip:hover {
+  border-color: rgba(255, 138, 28, 0.86);
+  color: #ff8a1c;
+  transform: translateY(-2px);
+}
+
+.ms8-opening-video.needs-tap::before {
+  content: "Tap to enter BoughtitOnline";
+  position: relative;
+  z-index: 1;
+  padding: 12px 18px;
+  border: 1px solid rgba(40, 217, 133, 0.45);
+  border-radius: 999px;
+  background: rgba(2, 7, 18, 0.76);
+  color: #28d985;
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 700;
+  box-shadow: 0 0 34px rgba(40, 217, 133, 0.18);
+  backdrop-filter: blur(12px);
 }
 
 .ms8-page-loader {
