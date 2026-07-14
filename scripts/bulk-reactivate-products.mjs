@@ -12,6 +12,7 @@ const config = {
   concurrency: Number(args.concurrency || 8),
   shippingBuffer: Number(args.shippingBuffer || 4.99),
   maxPrice: Number(args.maxPrice || 49.99),
+  mode: args.mode || 'safe',
   outputPath: path.resolve(args.output || '../../outputs/shopify-bulk-reactivation-result.json'),
 };
 
@@ -41,6 +42,10 @@ const likelyShippingRiskPatterns = [
   /\b(mug|magnetic\s*car\s*phone\s*holder)\b/i,
 ];
 
+const conversionRiskPatterns = [
+  /\b(mug|magnetic\s*car\s*phone\s*holder|rebound\s*net|faucet|fruit\s*rack|floor\s*mats?|shoe\s*rack|hammock)\b/i,
+];
+
 async function main() {
   console.log(`[bulk-reactivate] shop=${shop}`);
   console.log(`[bulk-reactivate] mode=${config.publish ? 'PUBLISH' : 'DRY_RUN'} max=${config.max} concurrency=${config.concurrency}`);
@@ -58,6 +63,7 @@ async function main() {
     scannedDrafts: products.length,
     eligible: decisions.filter((decision) => decision.ok).length,
     selected: selected.length,
+    selectedProducts: selected,
     activated: [],
     skipped: decisions.filter((decision) => !decision.ok).slice(0, 100),
     config,
@@ -143,7 +149,12 @@ function evaluateDraftProduct(product) {
   if (product.mediaCount.count <= 0) reasons.push('missing_media');
   if (product.totalInventory <= 0) reasons.push('missing_inventory');
   if (riskPatterns.some((pattern) => pattern.test(text))) reasons.push('risk_pattern');
-  if (likelyShippingRiskPatterns.some((pattern) => pattern.test(text))) reasons.push('shipping_risk_pattern');
+  if (config.mode === 'safe' && likelyShippingRiskPatterns.some((pattern) => pattern.test(text))) {
+    reasons.push('shipping_risk_pattern');
+  }
+  if (config.mode === 'conversion' && conversionRiskPatterns.some((pattern) => pattern.test(text))) {
+    reasons.push('conversion_risk_pattern');
+  }
   if (!price) reasons.push('no_profitable_price_under_cap');
   if (gate && !gate.passed) reasons.push(...gate.failures);
 
