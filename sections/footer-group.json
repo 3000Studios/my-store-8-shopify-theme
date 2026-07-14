@@ -191,7 +191,7 @@
             "text_customer_care_links_ms8": {
               "type": "text",
               "settings": {
-                "text": "<p><a href=\"/pages/contact\">Contact support</a><br><a href=\"/collections/all\">Shop all products</a><br><a href=\"/collections/home-living\">Home & Living</a><br><a href=\"/collections/tech-accessories\">Tech Accessories</a></p>",
+                "text": "<p><a href=\"/pages/contact\">Contact support</a><br><a href=\"/pages/shipping-information\">Shipping information</a><br><a href=\"/pages/returns-order-help\">Returns & order help</a><br><a href=\"/pages/faq\">FAQ</a><br><a href=\"/pages/gift-ideas\">Gift ideas</a><br><a href=\"/pages/product-screening-standards\">Product standards</a><br><a href=\"/collections/all\">Shop all products</a></p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",

@@ -13,6 +13,7 @@
     "products:auto:watch-publish": "node scripts/auto-product-publisher.mjs --publish",
     "products:bulk:dry-run": "node scripts/bulk-reactivate-products.mjs",
     "products:bulk:publish": "node scripts/bulk-reactivate-products.mjs --publish",
+    "pages:upsert": "node scripts/upsert-store-pages.mjs",
     "store:bootstrap": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/bootstrap-store-ops.ps1",
     "media:square": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/make-product-square.ps1",
     "media:vertical-ad": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/make-vertical-ad.ps1"

@@ -209,11 +209,23 @@
       "type": "ms8-sales-feature",
       "name": "Verified sales feature",
       "settings": {}
+    },
+    "custom_liquid_store_links_ms8": {
+      "type": "custom-liquid",
+      "name": "Shop smarter links",
+      "settings": {
+        "custom_liquid": "<section class=\"ms8-page-link-panel\" aria-label=\"Shop smarter\"><div><p class=\"ms8-page-link-panel__eyebrow\">Shop smarter</p><h2>Everything customers need before checkout.</h2><p>Find shipping details, order help, product standards, gift ideas, and the current active catalog from one clean hub.</p></div><nav class=\"ms8-page-link-grid\" aria-label=\"Helpful store pages\"><a href=\"/pages/shipping-information\">Shipping information</a><a href=\"/pages/returns-order-help\">Returns & order help</a><a href=\"/pages/faq\">FAQ</a><a href=\"/pages/gift-ideas\">Gift ideas</a><a href=\"/pages/product-screening-standards\">Product standards</a><a href=\"/pages/secure-checkout\">Secure checkout</a><a href=\"/pages/best-sellers\">Best sellers</a><a href=\"/pages/about-boughtitonline\">About BoughtitOnline</a></nav></section>",
+        "background_color": "#050505",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
     "custom_liquid_bought_it_online_hero",
     "ms8_sales_feature",
+    "custom_liquid_store_links_ms8",
     "product_list_fa6P9H"
   ]
 }
