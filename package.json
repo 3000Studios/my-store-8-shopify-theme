@@ -13,7 +13,12 @@
     "products:auto:watch-publish": "node scripts/auto-product-publisher.mjs --publish",
     "products:bulk:dry-run": "node scripts/bulk-reactivate-products.mjs",
     "products:bulk:publish": "node scripts/bulk-reactivate-products.mjs --publish",
+    "products:optimize:dry-run": "node scripts/optimize-active-products.mjs",
+    "products:optimize:publish": "node scripts/optimize-active-products.mjs --publish",
+    "products:zendrop:dry-run": "node scripts/zendrop-source-products.mjs",
+    "products:zendrop:publish": "node scripts/zendrop-source-products.mjs --publish",
     "pages:upsert": "node scripts/upsert-store-pages.mjs",
+    "collections:upsert": "node scripts/upsert-smart-collections.mjs",
     "store:bootstrap": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/bootstrap-store-ops.ps1",
     "media:square": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/make-product-square.ps1",
     "media:vertical-ad": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/make-vertical-ad.ps1"

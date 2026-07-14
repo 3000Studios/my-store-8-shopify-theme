@@ -3021,3 +3021,13 @@ footer,
     grid-template-columns: 1fr;
   }
 }
+
+/* Remove pill outlines from navigation links while keeping glow/hover affordance. */
+#header-component :is(.menu-list__link, .header__menu-item, .menu__link, .header-menu a[href], nav a[href]),
+#header-component :is(.menu-list__link, .header__menu-item, .menu__link, .header-menu a[href], nav a[href]):is(:hover, :focus, :focus-visible, [aria-current], .active),
+#header-component :is(.menu-list__link, .header__menu-item, .menu__link, .header-menu a[href], nav a[href])::part(link) {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}

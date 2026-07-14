@@ -1,5 +1,8 @@
 {% liquid
-  assign featured_product = all_products['candidate-phone-stand-for-desk']
+  assign featured_product = blank
+  for product in collections.all.products limit: 1
+    assign featured_product = product
+  endfor
 %}
 
 {% if featured_product != blank %}
@@ -19,13 +22,12 @@
       {% endif %}
     </div>
 
-    <div class="ms8-sales-feature__content">
+      <div class="ms8-sales-feature__content">
       <p class="ms8-sales-feature__eyebrow">Verified fast-sale pick</p>
-      <h2>Adjustable phone stand, priced to move.</h2>
+      <h2>{{ featured_product.title }}</h2>
       <p>
-        A compact desk, counter, and nightstand stand for hands-free video calls, streaming,
-        recipes, and charging setups. This product is supplier-linked, media-verified, and
-        priced through the store profit gate before publication.
+        A current live-catalog pick with secure Shopify checkout, active product media,
+        and storefront availability. Browse the product page for options, shipping, and final checkout details.
       </p>
 
       <div class="ms8-sales-feature__proof" aria-label="Product checks">

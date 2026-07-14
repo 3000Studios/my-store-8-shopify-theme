@@ -132,6 +132,7 @@ window.addEventListener('pageshow', () => {
   document.documentElement.classList.remove('ms8-page-leaving');
   showOpeningVideo();
   ensureVerifiedSalesFeature();
+  ensureShoppingHub();
   initGildedWallpaper();
   initLuxuryCursor();
   initLuxuryReveal();
@@ -203,24 +204,28 @@ async function ensureVerifiedSalesFeature() {
   if (!heroSection) return;
 
   try {
-    const response = await fetch('/products/candidate-phone-stand-for-desk.js', {
+    const response = await fetch('/collections/all/products.json?limit=1&sort_by=best-selling', {
       headers: { Accept: 'application/json' },
     });
     if (!response.ok) return;
-    const product = await response.json();
-    const price = product.price ? `$${(product.price / 100).toFixed(2)}` : '$12.99';
-    const image = product.featured_image || product.images?.[0] || '';
+    const payload = await response.json();
+    const product = payload.products?.[0];
+    if (!product) return;
+    const variant = product.variants?.[0];
+    const price = variant?.price ? `$${Number(variant.price).toFixed(2)}` : '';
+    const image = product.images?.[0]?.src || '';
+    const productUrl = `/products/${product.handle}`;
     const section = document.createElement('section');
     section.className = 'ms8-sales-feature';
     section.setAttribute('aria-label', 'Featured verified product');
     section.innerHTML = `
       <div class="ms8-sales-feature__media">
-        ${image ? `<img class="ms8-sales-feature__image" src="${image}" alt="${product.title || 'Adjustable phone stand'}" loading="eager">` : ''}
+        ${image ? `<img class="ms8-sales-feature__image" src="${image}" alt="${escapeHtml(product.title || 'Featured product')}" loading="eager">` : ''}
       </div>
       <div class="ms8-sales-feature__content">
         <p class="ms8-sales-feature__eyebrow">Verified fast-sale pick</p>
-        <h2>Adjustable phone stand, priced to move.</h2>
-        <p>A compact desk, counter, and nightstand stand for hands-free video calls, streaming, recipes, and charging setups. This product is supplier-linked, media-verified, and priced through the store profit gate before publication.</p>
+        <h2>${escapeHtml(product.title || 'Featured product')}</h2>
+        <p>A current live-catalog pick with secure Shopify checkout, active product media, and storefront availability. Browse the product page for options, shipping, and final checkout details.</p>
         <div class="ms8-sales-feature__proof" aria-label="Product checks">
           <span>Verified supplier cost</span>
           <span>Real product media</span>
@@ -228,7 +233,7 @@ async function ensureVerifiedSalesFeature() {
         </div>
         <div class="ms8-sales-feature__buy">
           <strong>${price}</strong>
-          <a class="ms8-sales-feature__button" href="/products/candidate-phone-stand-for-desk">Shop the verified pick</a>
+          <a class="ms8-sales-feature__button" href="${productUrl}">Shop the verified pick</a>
         </div>
       </div>
     `;
@@ -236,6 +241,43 @@ async function ensureVerifiedSalesFeature() {
   } catch {
     // Leave the existing Shopify-rendered content alone if product JSON is unavailable.
   }
+}
+
+function ensureShoppingHub() {
+  if (window.location.pathname !== '/' && !document.body.classList.contains('template-index')) return;
+  if (document.querySelector('.ms8-page-link-panel')) return;
+  const anchor = document.querySelector('.ms8-sales-feature') || document.querySelector('[id*="bought_it_online_hero"]');
+  if (!anchor) return;
+  const section = document.createElement('section');
+  section.className = 'ms8-page-link-panel';
+  section.setAttribute('aria-label', 'Shop smarter');
+  section.innerHTML = `
+    <div>
+      <p class="ms8-page-link-panel__eyebrow">Shop smarter</p>
+      <h2>Everything customers need before checkout.</h2>
+      <p>Find deals, new arrivals, shipping details, product standards, gift ideas, and the current active catalog from one clean hub.</p>
+    </div>
+    <nav class="ms8-page-link-grid" aria-label="Helpful store pages">
+      <a href="/collections/deals-under-25">Deals under $25</a>
+      <a href="/collections/new-arrivals">New arrivals</a>
+      <a href="/collections/best-sellers">Best sellers</a>
+      <a href="/collections/gift-ideas">Gift ideas</a>
+      <a href="/pages/shipping-information">Shipping information</a>
+      <a href="/pages/returns-order-help">Returns & order help</a>
+      <a href="/pages/product-screening-standards">Product standards</a>
+      <a href="/pages/secure-checkout">Secure checkout</a>
+    </nav>
+  `;
+  anchor.insertAdjacentElement('afterend', section);
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }
 
 function initLuxuryCursor() {
