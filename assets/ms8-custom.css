@@ -83,12 +83,52 @@ html {
 }
 
 .ms8-header-ticker {
+  position: relative;
   overflow: hidden;
+  padding-right: clamp(118px, 14vw, 170px);
   border-bottom: 1px solid rgba(80, 255, 173, 0.22);
   background:
     radial-gradient(circle at 18% 50%, rgba(15, 68, 122, 0.72), transparent 34%),
     linear-gradient(90deg, #020712, #061c38 42%, #020712);
   color: #28d985;
+}
+
+.ms8-music-toggle {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  z-index: 2;
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  gap: 8px;
+  transform: translateY(-50%);
+  border: 1px solid rgba(40, 217, 133, 0.45);
+  border-radius: 999px;
+  background: rgba(2, 7, 18, 0.72);
+  color: #28d985;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.ms8-music-toggle__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #6b7280;
+  box-shadow: 0 0 0 transparent;
+}
+
+.ms8-music-toggle[aria-pressed="true"] .ms8-music-toggle__dot {
+  background: #28d985;
+  box-shadow: 0 0 16px rgba(40, 217, 133, 0.92);
+}
+
+.ms8-music-toggle:hover {
+  color: #ff8a1c;
+  border-color: rgba(255, 138, 28, 0.78);
 }
 
 .ms8-header-ticker__track {
@@ -176,9 +216,78 @@ html {
 
 body {
   background:
+    radial-gradient(circle at 10% 16%, rgba(27, 111, 159, 0.12), transparent 28%),
+    radial-gradient(circle at 88% 10%, rgba(40, 217, 133, 0.1), transparent 26%),
+    radial-gradient(circle at 72% 90%, rgba(255, 138, 28, 0.1), transparent 28%),
     linear-gradient(180deg, rgba(255, 253, 248, 0.98), rgba(243, 244, 246, 0.62)),
     var(--ms8-paper);
+  background-attachment: fixed;
   color: var(--ms8-ink);
+}
+
+.ms8-page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  gap: 14px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 138, 28, 0.22), transparent 22%),
+    linear-gradient(135deg, #020712, #061c38 54%, #020712);
+  color: #28d985;
+  opacity: 1;
+  pointer-events: none;
+  transition:
+    opacity 420ms ease,
+    transform 520ms ease;
+}
+
+.ms8-page-loader.is-hidden {
+  opacity: 0;
+  transform: scale(1.04);
+}
+
+.ms8-page-loader span {
+  width: 54px;
+  height: 54px;
+  border: 4px solid rgba(40, 217, 133, 0.18);
+  border-top-color: #ff8a1c;
+  border-radius: 999px;
+  animation: ms8-spin 820ms linear infinite;
+}
+
+.ms8-page-loader strong {
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 1.1rem;
+}
+
+@keyframes ms8-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+::view-transition-old(root) {
+  animation: ms8-page-out 340ms ease both;
+}
+
+::view-transition-new(root) {
+  animation: ms8-page-in 420ms ease both;
+}
+
+@keyframes ms8-page-out {
+  to {
+    opacity: 0.2;
+    transform: perspective(900px) translateX(-8vw) rotateY(-12deg) scale(0.98);
+  }
+}
+
+@keyframes ms8-page-in {
+  from {
+    opacity: 0.2;
+    transform: perspective(900px) translateX(8vw) rotateY(12deg) scale(0.98);
+  }
 }
 
 .bio-hero {
@@ -458,6 +567,29 @@ header-component {
   transform: translateY(-1px);
 }
 
+header-drawer button,
+.header-drawer button,
+.header__icon--menu,
+summary.header__icon,
+button[aria-controls*="menu"],
+button[aria-label*="menu" i] {
+  background: linear-gradient(135deg, #061c38, #020712) !important;
+  color: #28d985 !important;
+  border: 1px solid rgba(40, 217, 133, 0.42) !important;
+  box-shadow: 0 10px 26px rgba(2, 7, 18, 0.28);
+}
+
+.menu-drawer,
+.header-menu {
+  color: #28d985;
+}
+
+.menu-drawer a,
+.menu-drawer button,
+.header-menu a {
+  color: #28d985 !important;
+}
+
 .menu-list,
 .menu-list__list {
   gap: clamp(4px, 0.8vw, 10px);
@@ -556,6 +688,17 @@ nav a[href]:hover {
   transform: perspective(700px) translateY(-3px) rotateX(7deg);
 }
 
+.menu-list__link:hover,
+.header__menu-item:hover,
+.menu__link:hover,
+.header-menu a[href]:hover,
+nav a[href]:hover,
+.menu-drawer a:hover {
+  text-shadow:
+    0 0 9px rgba(40, 217, 133, 0.75),
+    0 0 18px rgba(255, 138, 28, 0.4);
+}
+
 .menu-list__link:active,
 .header__menu-item:active,
 .menu__link:active,
@@ -565,6 +708,26 @@ nav a[href]:active {
     inset 0 2px 6px rgba(7, 12, 18, 0.2),
     0 4px 10px rgba(7, 12, 18, 0.18);
   transform: perspective(700px) translateY(1px) rotateX(0deg) scale(0.98);
+}
+
+.menu-list__link:active,
+.header__menu-item:active,
+.menu__link:active,
+.header-menu a[href]:active,
+nav a[href]:active,
+.menu-drawer a:active {
+  animation: ms8-bubble-pop 260ms ease;
+}
+
+@keyframes ms8-bubble-pop {
+  45% {
+    border-radius: 999px;
+    transform: perspective(700px) translateY(-2px) scale(1.08);
+  }
+
+  100% {
+    transform: perspective(700px) translateY(0) scale(1);
+  }
 }
 
 .menu-list__link:hover::before,
@@ -975,6 +1138,31 @@ nav a[href]:hover::after {
   color: #4b5563;
   font-size: 0.88rem;
   line-height: 1.42;
+}
+
+.ms8-confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ms8-confetti i {
+  position: absolute;
+  top: -18px;
+  left: var(--x);
+  width: 9px;
+  height: 15px;
+  border-radius: 2px;
+  animation: ms8-confetti-fall 1.55s ease-in var(--delay) forwards;
+}
+
+@keyframes ms8-confetti-fall {
+  to {
+    opacity: 0;
+    transform: translate3d(-10vw, 110vh, 0) rotate(var(--spin));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

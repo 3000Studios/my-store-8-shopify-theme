@@ -4,6 +4,7 @@
 %}
 
 <aside class="ms8-header-ticker" aria-label="Store announcements and featured products">
+  <audio class="ms8-site-music" src="{{ 'bought-it-online-music.mp3' | asset_url }}" loop preload="metadata"></audio>
   <div class="ms8-header-ticker__track">
     {% for repeat in (1..2) %}
       <div class="ms8-header-ticker__group" aria-hidden="{% if repeat == 1 %}false{% else %}true{% endif %}">
@@ -19,6 +20,10 @@
       </div>
     {% endfor %}
   </div>
+  <button class="ms8-music-toggle" type="button" aria-pressed="false" aria-label="Turn music on">
+    <span class="ms8-music-toggle__dot" aria-hidden="true"></span>
+    <span class="ms8-music-toggle__text">Music off</span>
+  </button>
 </aside>
 
 {% schema %}
