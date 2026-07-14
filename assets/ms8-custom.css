@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Playfair Display";
+  src: url("playfair-display-800.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700 900;
+}
+
 :root {
   --ms8-ink: #182436;
   --ms8-paper: #fffdf8;
@@ -58,6 +66,98 @@ h6,
 
 html {
   scroll-behavior: smooth;
+}
+
+.ms8-header-ticker {
+  overflow: hidden;
+  border-bottom: 1px solid rgba(80, 255, 173, 0.22);
+  background:
+    radial-gradient(circle at 18% 50%, rgba(15, 68, 122, 0.72), transparent 34%),
+    linear-gradient(90deg, #020712, #061c38 42%, #020712);
+  color: #28d985;
+}
+
+.ms8-header-ticker__track {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  animation: ms8-ticker-scroll 38s linear infinite;
+}
+
+.ms8-header-ticker:hover .ms8-header-ticker__track {
+  animation-play-state: paused;
+}
+
+.ms8-header-ticker__group {
+  display: inline-flex;
+  min-width: max-content;
+  align-items: center;
+  gap: clamp(26px, 4vw, 54px);
+  padding: 10px clamp(22px, 4vw, 54px);
+  color: #28d985;
+  font-family:
+    "Playfair Display",
+    Georgia,
+    "Times New Roman",
+    serif;
+  font-size: clamp(0.92rem, 1.4vw, 1.15rem);
+  font-weight: 800;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.ms8-header-ticker__group span,
+.ms8-header-ticker__group a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.ms8-header-ticker__group span::after,
+.ms8-header-ticker__group a::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  margin-left: clamp(26px, 4vw, 54px);
+  border-radius: 999px;
+  background: #ff8a1c;
+  box-shadow: 0 0 12px rgba(255, 138, 28, 0.9);
+}
+
+.ms8-header-ticker__group a {
+  color: #ff8a1c;
+  font-weight: 950;
+  text-decoration: none;
+  text-shadow:
+    0 0 8px rgba(255, 138, 28, 0.76),
+    0 0 18px rgba(255, 66, 0, 0.36);
+  transition:
+    color 160ms ease,
+    text-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.ms8-header-ticker__group a:hover {
+  color: #ffb13d;
+  text-shadow:
+    0 0 10px rgba(255, 177, 61, 0.96),
+    0 0 24px rgba(255, 66, 0, 0.62);
+  transform: translateY(-1px);
+}
+
+@keyframes ms8-ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms8-header-ticker__track {
+    animation: none;
+  }
 }
 
 body {
