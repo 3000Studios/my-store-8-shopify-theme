@@ -130,6 +130,7 @@ window.addEventListener('pageshow', () => {
   ensureLoader()?.classList.add('is-hidden');
   document.documentElement.classList.remove('ms8-page-leaving');
   showOpeningVideo();
+  ensureVerifiedSalesFeature();
 });
 
 document.addEventListener('click', (event) => {
@@ -189,3 +190,46 @@ document.addEventListener('shopify:cart:lines-update', (event) => {
   playCheer();
   launchConfetti();
 });
+
+async function ensureVerifiedSalesFeature() {
+  if (window.location.pathname !== '/' && !document.body.classList.contains('template-index')) return;
+  if (document.querySelector('.ms8-sales-feature')) return;
+
+  const heroSection = document.querySelector('[id*="bought_it_online_hero"]');
+  if (!heroSection) return;
+
+  try {
+    const response = await fetch('/products/candidate-phone-stand-for-desk.js', {
+      headers: { Accept: 'application/json' },
+    });
+    if (!response.ok) return;
+    const product = await response.json();
+    const price = product.price ? `$${(product.price / 100).toFixed(2)}` : '$12.99';
+    const image = product.featured_image || product.images?.[0] || '';
+    const section = document.createElement('section');
+    section.className = 'ms8-sales-feature';
+    section.setAttribute('aria-label', 'Featured verified product');
+    section.innerHTML = `
+      <div class="ms8-sales-feature__media">
+        ${image ? `<img class="ms8-sales-feature__image" src="${image}" alt="${product.title || 'Adjustable phone stand'}" loading="eager">` : ''}
+      </div>
+      <div class="ms8-sales-feature__content">
+        <p class="ms8-sales-feature__eyebrow">Verified fast-sale pick</p>
+        <h2>Adjustable phone stand, priced to move.</h2>
+        <p>A compact desk, counter, and nightstand stand for hands-free video calls, streaming, recipes, and charging setups. This product is supplier-linked, media-verified, and priced through the store profit gate before publication.</p>
+        <div class="ms8-sales-feature__proof" aria-label="Product checks">
+          <span>Verified supplier cost</span>
+          <span>Real product media</span>
+          <span>Secure Shopify checkout</span>
+        </div>
+        <div class="ms8-sales-feature__buy">
+          <strong>${price}</strong>
+          <a class="ms8-sales-feature__button" href="/products/candidate-phone-stand-for-desk">Shop the verified pick</a>
+        </div>
+      </div>
+    `;
+    heroSection.insertAdjacentElement('afterend', section);
+  } catch {
+    // Leave the existing Shopify-rendered content alone if product JSON is unavailable.
+  }
+}

@@ -1086,6 +1086,10 @@ nav a[href]:hover::after {
   border-block: 1px solid rgba(24, 36, 54, 0.1);
 }
 
+[id$="custom_liquid_storefront_focus"] {
+  display: none !important;
+}
+
 .ms8-sales-feature__media {
   position: relative;
   overflow: hidden;
