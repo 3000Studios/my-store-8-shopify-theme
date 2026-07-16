@@ -4,6 +4,8 @@
   assign topic_class = collection.handle | default: 'all'
   assign video_asset = 'bought-it-online-hero.mp4'
   assign eyebrow = 'Featured collection'
+  assign cta_label = 'Shop now'
+  assign cta_link = collection.url | default: '/collections/all'
 
   case collection.handle
     when 'outdoor-sports'
@@ -17,8 +19,16 @@
       assign video_asset = 'home-and-living.mp4'
     when 'best-picks'
       assign eyebrow = 'Best picks'
+      assign cta_label = 'See best picks'
     when 'all'
-      assign eyebrow = 'Shop all'
+      assign eyebrow = 'Shop all practical finds'
+      assign cta_label = 'Browse full catalog'
+    when 'deals-under-25'
+      assign eyebrow = 'Smart deals'
+      assign cta_label = 'Grab deals under $25'
+    when 'new-arrivals'
+      assign eyebrow = 'Fresh arrivals'
+      assign cta_label = 'See what\'s new'
   endcase
 %}
 
@@ -33,8 +43,9 @@
     {% if banner_description != blank %}
       <p class="ms8-collection-hero__copy">{{ banner_description }}</p>
     {% else %}
-      <p class="ms8-collection-hero__copy">Browse practical finds selected for fast shopping, useful everyday value, and secure Shopify checkout.</p>
+      <p class="ms8-collection-hero__copy">Practical everyday essentials. Fair prices. No fake scarcity. Secure Shopify checkout.</p>
     {% endif %}
+    <a href="{{ cta_link }}" class="ms8-collection-hero__cta button button--primary">{{ cta_label }}</a>
   </div>
 </section>
 
