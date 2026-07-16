@@ -1,0 +1,111 @@
+{% comment %}
+  Announcement Bar - Part of BoughtitOnline Premium UI/UX Spec
+  Rotating messages, subtle animation, accessible pause
+{% endcomment %}
+
+<div class="announcement-bar" role="region" aria-label="Store announcements">
+  <div class="announcement-bar__track">
+    <div class="announcement-bar__content">
+      <span class="announcement-bar__message">Free shipping over $50</span>
+      <span class="announcement-bar__message">Easy 30-day returns</span>
+      <span class="announcement-bar__message">New deals added daily</span>
+      <span class="announcement-bar__message">Premium quality at better prices</span>
+    </div>
+  </div>
+
+  <button 
+    class="announcement-bar__pause" 
+    aria-label="Pause announcements" 
+    aria-pressed="false">
+    <span class="announcement-bar__pause-icon">⏸</span>
+  </button>
+</div>
+
+<style>
+  .announcement-bar {
+    background: #111111;
+    color: #FFFFFF;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .announcement-bar__track {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .announcement-bar__content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    white-space: nowrap;
+    animation: announcement-scroll 18s linear infinite;
+    padding-left: 20px;
+  }
+
+  .announcement-bar__message {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .announcement-bar__message::after {
+    content: "•";
+    opacity: 0.5;
+  }
+
+  .announcement-bar__pause {
+    position: absolute;
+    right: 16px;
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    opacity: 0.7;
+    cursor: pointer;
+    padding: 4px;
+    font-size: 0.9rem;
+  }
+
+  .announcement-bar__pause[aria-pressed="true"] {
+    opacity: 1;
+  }
+
+  @keyframes announcement-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .announcement-bar__content {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  // Simple pause functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const pauseBtn = document.querySelector('.announcement-bar__pause');
+    const track = document.querySelector('.announcement-bar__content');
+    
+    if (pauseBtn && track) {
+      pauseBtn.addEventListener('click', function() {
+        const isPaused = pauseBtn.getAttribute('aria-pressed') === 'true';
+        if (isPaused) {
+          track.style.animationPlayState = 'running';
+          pauseBtn.setAttribute('aria-pressed', 'false');
+          pauseBtn.innerHTML = '<span class="announcement-bar__pause-icon">⏸</span>';
+        } else {
+          track.style.animationPlayState = 'paused';
+          pauseBtn.setAttribute('aria-pressed', 'true');
+          pauseBtn.innerHTML = '<span class="announcement-bar__pause-icon">▶</span>';
+        }
+      });
+    }
+  });
+</script>
