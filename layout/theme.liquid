@@ -20,6 +20,8 @@
       >
     {%- endif -%}
 
+    {% comment %} LATEST UPDATE - FULL OVERHAUL v1: Hero Videos per section, Premium UI (best colors/gold accents, fonts, polished interactions), Revenue Optimized for maximum conversions & money-making, SEO-ready, Dynamic product recommendations (autonomous loading), Video heroes on home + collections, Trust signals, Strong CTAs, Fast polished UX. Pushed from GitHub main. Easy to find: Search for 'Latest Update - Full Overhaul v1' in theme editor or code. {% endcomment %}
+
     {% comment %} This a way to wait for main content to load when navigating to a new page so that the view transitions can work consistently {% endcomment %}
     {% if settings.transition_to_main_product or settings.page_transition_enabled %}
       <link
@@ -28,7 +30,7 @@
         blocking="render"
         id="view-transition-render-blocker"
       >
-    {% endif %}
+    {% endif -%}
 
     {%- render 'meta-tags' -%}
     {%- render 'stylesheets' -%}
