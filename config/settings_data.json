@@ -102,6 +102,52 @@
     "variant_button_border_width": 1,
     "variant_button_radius": 14,
     "variant_button_width": "equal-width-buttons",
+    "content_for_index": [],
+    "blocks": {
+      "9094328589753815681": {
+        "type": "shopify://apps/hextom-shipping-bar/blocks/fsb-embeded-block/7ef5d9af-75a2-45c7-9b1b-f9240ee488e9",
+        "disabled": false,
+        "settings": {}
+      },
+      "13047258039897440615": {
+        "type": "shopify://apps/judge-me-reviews/blocks/cart_drawer_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {
+          "widget_type": "review-widget"
+        }
+      },
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      },
+      "13768625480086291342": {
+        "type": "shopify://apps/forms/blocks/forms/8744a304-fcb1-4347-b211-bb6b4759a76a",
+        "disabled": false,
+        "settings": {}
+      },
+      "15683396631634586217": {
+        "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
+        "disabled": false,
+        "settings": {
+          "greeting_message": "",
+          "show_featured_products": true,
+          "featured_products": [],
+          "background_color": "#FFFFFF",
+          "font_color": "#000000",
+          "button_color": "#000000",
+          "secondary_color": "#FFFFFF",
+          "ternary_color": "#6A6A6A",
+          "button_icon": "chat_bubble",
+          "button_text": "chat_with_us",
+          "button_horizontal_position": "bottom_right",
+          "button_vertical_position": "lowest",
+          "agent_inherit_fonts": true,
+          "agent_font": "system_ui_n4",
+          "agent_border_radius": 16
+        }
+      }
+    },
     "color_palette": {
       "background": "#ffffff",
       "foreground": "#000000"
