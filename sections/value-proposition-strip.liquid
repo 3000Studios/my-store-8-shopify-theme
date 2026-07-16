@@ -1,0 +1,85 @@
+{% comment %}
+  Value Proposition Strip - Matches BoughtitOnline Premium UI/UX Spec
+  Four compact trust items, mobile 2x2 grid
+{% endcomment %}
+
+<div class="value-prop-strip">
+  <div class="value-prop-grid">
+    <div class="value-prop-item">
+      <div class="value-prop-icon">🚚</div>
+      <div class="value-prop-content">
+        <strong>Fast shipping</strong>
+        <span>2–5 business days</span>
+      </div>
+    </div>
+    <div class="value-prop-item">
+      <div class="value-prop-icon">↩️</div>
+      <div class="value-prop-content">
+        <strong>Easy returns</strong>
+        <span>30-day window</span>
+      </div>
+    </div>
+    <div class="value-prop-item">
+      <div class="value-prop-icon">🔒</div>
+      <div class="value-prop-content">
+        <strong>Secure checkout</strong>
+        <span>Shopify protected</span>
+      </div>
+    </div>
+    <div class="value-prop-item">
+      <div class="value-prop-icon">💬</div>
+      <div class="value-prop-content">
+        <strong>Real support</strong>
+        <span>Response within 24h</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .value-prop-strip {
+    background: #F6F7F8;
+    padding: 24px 16px;
+    border-top: 1px solid #E5E7EB;
+    border-bottom: 1px solid #E5E7EB;
+  }
+
+  .value-prop-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .value-prop-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+  }
+
+  .value-prop-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .value-prop-icon {
+    font-size: 1.5rem;
+    width: 36px;
+    flex-shrink: 0;
+  }
+
+  .value-prop-content strong {
+    display: block;
+    font-size: 0.95rem;
+    color: #111111;
+    margin-bottom: 2px;
+  }
+
+  .value-prop-content span {
+    font-size: 0.8rem;
+    color: #626262;
+  }
+</style>
