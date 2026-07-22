@@ -6,7 +6,7 @@ Production is deployed directly to Shopify theme:
 
 - Store: `knkxfs-xd.myshopify.com`
 - Live theme: `Horizon`
-- Theme ID: `181639479597`
+- Theme ID: `181944025389`
 
 Use this repo as the source of truth. Run all commands from the repo root.
 

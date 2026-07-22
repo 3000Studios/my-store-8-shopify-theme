@@ -2,13 +2,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { setTimeout as sleep } from 'node:timers/promises';
 
-const DEFAULT_ENV_PATH = 'C:/Users/Servi/.config/env/global.env';
+import { loadEnv } from './lib/env.mjs';
+
 const args = parseArgs(process.argv.slice(2));
-loadEnv(args.env || DEFAULT_ENV_PATH);
+loadEnv(args.env);
 
 const shop = process.env.SHOPIFY_SHOP_DOMAIN || process.env.SHOPIFY_SHOP || process.env.SHOPIFY_STORE_DOMAIN;
 const token = process.env.SHOPIFY_ADMIN_ACCESS_TOKEN || process.env.SHOPIFY_API_TOKEN;
-const apiVersion = process.env.SHOPIFY_API_VERSION || '2026-07';
+const apiVersion = process.env.SHOPIFY_API_VERSION || '2025-10';
 const publish = Boolean(args.publish);
 const outputPath = path.resolve(args.output || '../../outputs/shopify-active-product-optimization.json');
 
@@ -225,19 +226,6 @@ function parseNextPageInfo(linkHeader) {
   const match = next.match(/<([^>]+)>/);
   if (!match) return null;
   return new URL(match[1]).searchParams.get('page_info');
-}
-
-function loadEnv(envPath) {
-  if (!fs.existsSync(envPath)) return;
-  for (const line of fs.readFileSync(envPath, 'utf8').split(/\r?\n/)) {
-    const match = line.match(/^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)\s*$/);
-    if (!match) continue;
-    let value = match[2].trim();
-    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
-      value = value.slice(1, -1);
-    }
-    process.env[match[1]] ||= value;
-  }
 }
 
 function parseArgs(rawArgs) {

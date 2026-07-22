@@ -1,12 +1,10 @@
 {% liquid
-  assign featured_product = blank
-  for product in collections.all.products limit: 1
-    assign featured_product = product
-  endfor
+  assign featured_collection = collections['best-sellers'] | default: collections.all
+  assign featured_product = featured_collection.products.first
 %}
 
 {% if featured_product != blank %}
-  <section class="ms8-sales-feature" aria-label="Featured verified product">
+  <section class="ms8-sales-feature" aria-label="Featured product">
     <div class="ms8-sales-feature__media">
       {% if featured_product.featured_media %}
         {{
@@ -23,22 +21,22 @@
     </div>
 
       <div class="ms8-sales-feature__content">
-      <p class="ms8-sales-feature__eyebrow">Verified fast-sale pick</p>
+      <p class="ms8-sales-feature__eyebrow">Featured right now</p>
       <h2>{{ featured_product.title }}</h2>
       <p>
-        A current live-catalog pick with secure Shopify checkout, active product media,
-        and storefront availability. Browse the product page for options, shipping, and final checkout details.
+        One of our most-loved finds, selected for everyday usefulness and clear value.
+        View the product page for current options, delivery details, and checkout.
       </p>
 
       <div class="ms8-sales-feature__proof" aria-label="Product checks">
-        <span>Verified supplier cost</span>
-        <span>Real product media</span>
+        <span>Clear pricing</span>
+        <span>Curated for real life</span>
         <span>Secure Shopify checkout</span>
       </div>
 
       <div class="ms8-sales-feature__buy">
         <strong>{{ featured_product.price | money }}</strong>
-        <a class="ms8-sales-feature__button" href="{{ featured_product.url }}">Shop the verified pick</a>
+        <a class="ms8-sales-feature__button" href="{{ featured_product.url }}">View product</a>
       </div>
     </div>
   </section>

@@ -2,6 +2,8 @@ node_modules/
 .shopify/
 .env
 .env.*
+!.env.example
 *.log
 logs/
 data/auto-product-queue.json
+shopify-stores.local.json

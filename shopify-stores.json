@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "workspaceEnv": "C:/Users/MrJws/OneDrive/Workspaces/global.env",
+  "githubRepo": "3000Studios/Boughtitonline",
+  "canonicalLocalPath": "C:/Users/MrJws/OneDrive/Workspaces/boughtitonline.com",
+  "stores": [
+    {
+      "id": "boughtitonline",
+      "label": "BoughtItOnline",
+      "primary": true,
+      "domain": "knkxfs-xd.myshopify.com",
+      "publicDomain": "boughtitonline.com",
+      "liveThemeId": "181944025389",
+      "liveThemeName": "Horizon",
+      "env": {
+        "shop": "SHOPIFY_SHOP_DOMAIN",
+        "adminToken": "SHOPIFY_ADMIN_ACCESS_TOKEN",
+        "themeToken": "SHOPIFY_CLI_THEME_TOKEN",
+        "apiVersion": "SHOPIFY_API_VERSION",
+        "themeId": "SHOPIFY_THEME_ID"
+      },
+      "capabilities": {
+        "theme": true,
+        "products": true,
+        "collections": true,
+        "pages": true,
+        "orders": "read",
+        "customers": "read"
+      }
+    }
+  ],
+  "notes": [
+    "Add more Shopify shops as sibling objects under stores[] with their own env key names if needed.",
+    "Cloudflare sites are managed via the workspace PROJECT_REGISTRY.md + Cloudflare MCP, not this file."
+  ]
+}

@@ -1,7 +1,7 @@
 param(
-  [string]$EnvPath = "C:\Users\Servi\.config\env\global.env",
+  [string]$EnvPath = "C:\Users\MrJws\OneDrive\Workspaces\global.env",
   [string]$ShopDomain = "knkxfs-xd.myshopify.com",
-  [string]$ThemeId = "181639479597",
+  [string]$ThemeId = "181944025389",
   [switch]$OpenAppInstallPages,
   [switch]$RunBulkDryRun,
   [switch]$SkipNpmInstall

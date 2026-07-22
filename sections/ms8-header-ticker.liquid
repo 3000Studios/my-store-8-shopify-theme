@@ -3,13 +3,12 @@
   assign shown_count = 0
 %}
 
-<aside class="ms8-header-ticker" aria-label="Store announcements and featured products">
-  <audio class="ms8-site-music" src="{{ 'bought-it-online-music.mp3' | asset_url }}" loop preload="metadata"></audio>
+<aside class="ms8-header-ticker" aria-label="Store announcements">
   <div class="ms8-header-ticker__track">
     {% for repeat in (1..2) %}
       <div class="ms8-header-ticker__group" aria-hidden="{% if repeat == 1 %}false{% else %}true{% endif %}">
-        <span>Welcome to Boughtitonline.com</span>
-        <span>Check out these gift giving ideas and products for you</span>
+        <span>Everyday finds, clearly priced.</span>
+        <span>New arrivals and useful gift ideas.</span>
         {% assign shown_count = 0 %}
         {% for product in ticker_collection.products limit: 12 %}
           {% if product.available and shown_count < 5 %}
@@ -20,10 +19,6 @@
       </div>
     {% endfor %}
   </div>
-  <button class="ms8-music-toggle" type="button" aria-pressed="false" aria-label="Turn music on">
-    <span class="ms8-music-toggle__dot" aria-hidden="true"></span>
-    <span class="ms8-music-toggle__text">Music off</span>
-  </button>
 </aside>
 
 {% schema %}

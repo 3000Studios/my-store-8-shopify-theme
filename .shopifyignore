@@ -1,0 +1,15 @@
+.git/
+.github/
+node_modules/
+scripts/
+data/
+docs/
+AI_OPERATIONS.md
+README.md
+package.json
+package-lock.json
+shopify-themes.json
+preview-theme-result.json
+*.ps1
+*.mjs
+*.md
