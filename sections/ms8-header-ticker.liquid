@@ -1,19 +1,40 @@
 {% liquid
-  assign ticker_collection = collections['best-sellers'] | default: collections.all
+  assign ticker_collection = collections['best-sellers'] | default: collections['best-picks'] | default: collections.all
   assign shown_count = 0
 %}
 
-<aside class="ms8-header-ticker" aria-label="Best sellers">
+<aside class="ms8-header-ticker" aria-label="Store highlights and best sellers">
   <div class="ms8-header-ticker__track">
     {% for repeat in (1..2) %}
       <div class="ms8-header-ticker__group" aria-hidden="{% if repeat == 1 %}false{% else %}true{% endif %}">
-        <span class="ms8-header-ticker__label">Best sellers</span>
+        <span class="ms8-header-ticker__label">Bought It Online</span>
+        <a href="/collections/all">
+          <span>Useful finds · Fair prices · No nonsense</span>
+        </a>
+        <a href="/collections/deals-under-25">
+          <span>Deals under $25</span>
+        </a>
+        <a href="/collections/new-arrivals">
+          <span>New arrivals</span>
+        </a>
+        <a href="/collections/best-sellers">
+          <span>Best sellers</span>
+        </a>
+        <a href="/collections/gift-ideas">
+          <span>Gift ideas</span>
+        </a>
+        <a href="/pages/secure-checkout">
+          <span>Secure Shopify checkout</span>
+        </a>
+        <a href="/pages/shipping-information">
+          <span>Fast shipping</span>
+        </a>
         {% assign shown_count = 0 %}
         {% for product in ticker_collection.products limit: 12 %}
-          {% if product.available and shown_count < 5 %}
+          {% if product.available and shown_count < 6 %}
             {% assign shown_count = shown_count | plus: 1 %}
             <a href="{{ product.url }}">
-              <span>{{ product.title }}</span>
+              <span>{{ product.title | truncate: 42 }}</span>
               <small>{{ product.price | money_without_trailing_zeros }}</small>
             </a>
           {% endif %}
