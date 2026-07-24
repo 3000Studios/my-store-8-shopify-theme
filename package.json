@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "theme:pull": "shopify theme pull --store knkxfs-xd.myshopify.com --theme 181944025389 --nodelete",
+    "theme:pull": "shopify theme pull --store knkxfs-xd.myshopify.com --theme 182021161261 --nodelete",
     "theme:check": "shopify theme check",
     "theme:dev": "shopify theme dev --store knkxfs-xd.myshopify.com",
     "products:auto:dry-run": "node scripts/auto-product-publisher.mjs --once",
@@ -23,8 +23,8 @@
     "media:square": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/make-product-square.ps1",
     "media:vertical-ad": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/make-vertical-ad.ps1",
     "theme:push:preview": "shopify theme push --store knkxfs-xd.myshopify.com --unpublished",
-    "theme:push:live": "shopify theme push --store knkxfs-xd.myshopify.com --theme 181944025389 --allow-live",
-    "theme:push": "shopify theme push --store knkxfs-xd.myshopify.com --theme 181944025389 --allow-live"
+    "theme:push:live": "shopify theme push --store knkxfs-xd.myshopify.com --theme 182021161261 --allow-live",
+    "theme:push": "shopify theme push --store knkxfs-xd.myshopify.com --theme 182021161261 --allow-live"
   },
   "devDependencies": {
     "@shopify/cli": "4.4.0"
