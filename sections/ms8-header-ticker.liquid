@@ -3,17 +3,19 @@
   assign shown_count = 0
 %}
 
-<aside class="ms8-header-ticker" aria-label="Store announcements">
+<aside class="ms8-header-ticker" aria-label="Best sellers">
   <div class="ms8-header-ticker__track">
     {% for repeat in (1..2) %}
       <div class="ms8-header-ticker__group" aria-hidden="{% if repeat == 1 %}false{% else %}true{% endif %}">
-        <span>Everyday finds, clearly priced.</span>
-        <span>New arrivals and useful gift ideas.</span>
+        <span class="ms8-header-ticker__label">Best sellers</span>
         {% assign shown_count = 0 %}
         {% for product in ticker_collection.products limit: 12 %}
           {% if product.available and shown_count < 5 %}
             {% assign shown_count = shown_count | plus: 1 %}
-            <a href="{{ product.url }}">{{ product.title }}</a>
+            <a href="{{ product.url }}">
+              <span>{{ product.title }}</span>
+              <small>{{ product.price | money_without_trailing_zeros }}</small>
+            </a>
           {% endif %}
         {% endfor %}
       </div>
